@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" data-theme="eye-care" data-lang="bilingual" data-layout="auto">
+<html lang="zh-Hant" data-theme="eye-care" data-lang="bilingual" data-layout="auto" data-print-pages="1">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Australian Résumé Studio v1 · 澳洲打工度假履歷工作台</title>
-  <meta name="description" content="Generate high-converting, targeted Australian résumés for working holiday makers. 8 visual styles × 12 job roles with live A4 preview and instant PDF export.">
+  <title>Australian Résumé Studio v2 · 澳洲打工度假履歷工作台</title>
+  <meta name="description" content="Generate high-converting, targeted Australian résumés for working holiday makers and skilled professionals. Strict 1-Page A4 & Balanced 2-Page modes with live preview and instant PDF export.">
   <style>
     /* CSS RESET & VARIABLES */
     :root {
@@ -181,16 +181,8 @@
       font-family: inherit;
       color: inherit;
     }
-    button {
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    /* TOPBAR STACK */
+    /* AUSTRALIA STYLE TOPBAR STACK */
     .topbar-stack {
       position: sticky;
       top: 0;
@@ -198,88 +190,95 @@
       background-color: var(--bg-surface);
       border-bottom: 1px solid var(--line);
       box-shadow: var(--shadow-sm);
-      transition: background-color var(--trans-speed) var(--trans-ease), border-color var(--trans-speed) var(--trans-ease);
     }
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: var(--topbar-h);
-      padding: 0 16px;
-      gap: 12px;
-      max-width: 1600px;
-      margin: 0 auto;
+      padding: 0 20px;
+      gap: 16px;
     }
     .topbar-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .version-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      letter-spacing: 0.04em;
     }
     .topbar-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
+    /* CONTROL BUTTONS */
     .icon-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line);
-      background-color: var(--bg-surface-2);
-      color: var(--text-main);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: background-color var(--trans-speed), border-color var(--trans-speed), transform 0.1s;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface-2);
+      border: 1px solid var(--line);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: background-color var(--trans-speed), transform 0.12s;
     }
     .icon-btn:hover {
-      background-color: var(--bg-card);
-      border-color: var(--text-sub);
+      background-color: var(--line);
     }
     .icon-btn:active {
       transform: scale(0.96);
     }
     .icon-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       stroke: currentColor;
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
       fill: none;
     }
-    .brand-group {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .brand-title {
-      font-size: 1.12rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: var(--text-main);
-      white-space: nowrap;
-    }
-    .version-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 2px 7px;
-      background-color: var(--primary);
-      color: var(--primary-text);
-      border-radius: var(--radius-full);
-      line-height: 1.3;
-    }
+
     .btn-action-primary {
-      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
       height: 40px;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       background-color: var(--primary);
       color: var(--primary-text);
-      font-weight: 700;
-      font-size: 0.88rem;
-      gap: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-      transition: background-color var(--trans-speed), transform 0.1s;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: background-color var(--trans-speed), transform 0.12s;
     }
     .btn-action-primary:hover {
       background-color: var(--primary-hover);
@@ -290,85 +289,101 @@
     .btn-action-primary svg {
       width: 18px;
       height: 18px;
-      fill: none;
       stroke: currentColor;
       stroke-width: 2.2;
+      fill: none;
     }
+
     .btn-action-outline {
-      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 14px;
       height: 40px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line);
-      background-color: var(--bg-surface-2);
+      border-radius: var(--radius-md);
+      background-color: transparent;
       color: var(--text-main);
       font-weight: 600;
-      font-size: 0.84rem;
-      gap: 6px;
+      font-size: 0.88rem;
+      border: 1px solid var(--line);
+      cursor: pointer;
       transition: background-color var(--trans-speed), border-color var(--trans-speed);
     }
     .btn-action-outline:hover {
-      background-color: var(--bg-card);
-      border-color: var(--text-sub);
+      background-color: var(--bg-surface-2);
+      border-color: var(--text-muted);
     }
 
-    /* BOOKMARKS ROW */
+    /* HORIZONTALLY SCROLLABLE BOOKMARK ROW */
     .bookmarks-bar {
       display: flex;
       align-items: center;
       height: var(--bookmark-h);
       padding: 0 16px;
+      background-color: var(--bg-surface-2);
       border-top: 1px solid var(--line-subtle);
-      background-color: var(--bg-surface);
-      max-width: 1600px;
-      margin: 0 auto;
-      gap: 8px;
-      transition: max-height var(--trans-speed) var(--trans-ease), opacity var(--trans-speed) var(--trans-ease);
+      position: relative;
       overflow: hidden;
+      transition: height var(--trans-speed) var(--trans-ease), padding var(--trans-speed) var(--trans-ease), opacity var(--trans-speed);
     }
     .bookmarks-bar.collapsed {
-      max-height: 0;
       height: 0;
-      padding: 0 16px;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-top-color: transparent;
       opacity: 0;
-      border-top: none;
+      pointer-events: none;
     }
     .bookmarks-toggle-btn {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      border-radius: 6px;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--line);
-      background-color: var(--bg-surface-2);
-      font-size: 1.1rem;
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
-      color: var(--text-muted);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
     }
     .bookmarks-scroll {
       display: flex;
       align-items: center;
       gap: 8px;
+      margin-left: 36px;
       overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
       scroll-behavior: smooth;
-      flex: 1;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: calc(100% - 36px);
     }
     .bookmarks-scroll::-webkit-scrollbar {
       display: none;
     }
     .bookmark-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 5px 12px;
       border-radius: var(--radius-full);
+      background-color: var(--bg-card);
       border: 1px solid var(--line);
-      background-color: var(--bg-surface-2);
-      font-size: 0.8rem;
-      font-weight: 600;
       color: var(--text-muted);
-      transition: all var(--trans-speed);
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
     .bookmark-chip:hover {
-      background-color: var(--bg-card);
       color: var(--text-main);
       border-color: var(--primary);
     }
@@ -378,13 +393,13 @@
       border-color: var(--primary);
     }
 
-    /* OVERLAYS: SIDEBAR & HAMBURGER MENU */
+    /* DRAWERS (SIDEBAR & HAMBURGER) */
     .drawer-backdrop {
       position: fixed;
       inset: 0;
-      background-color: rgba(0,0,0,0.45);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 150;
       opacity: 0;
       pointer-events: none;
       transition: opacity var(--trans-speed) var(--trans-ease);
@@ -397,10 +412,10 @@
       position: fixed;
       top: 0;
       bottom: 0;
-      width: min(440px, 86vw);
+      width: min(380px, 86vw);
       background-color: var(--bg-surface);
+      z-index: 160;
       box-shadow: var(--shadow-lg);
-      z-index: 1001;
       display: flex;
       flex-direction: column;
       transition: transform var(--trans-speed) var(--trans-ease);
@@ -410,12 +425,15 @@
       transform: translateX(-100%);
       border-right: 1px solid var(--line);
     }
+    .drawer-left.active {
+      transform: translateX(0);
+    }
     .drawer-right {
       right: 0;
       transform: translateX(100%);
       border-left: 1px solid var(--line);
     }
-    .drawer.active {
+    .drawer-right.active {
       transform: translateX(0);
     }
     .drawer-header {
@@ -425,72 +443,124 @@
       height: var(--topbar-h);
       padding: 0 20px;
       border-bottom: 1px solid var(--line);
-      background-color: var(--bg-surface-2);
     }
     .drawer-title {
       font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-main);
+      font-weight: 700;
     }
     .drawer-body {
-      padding: 20px;
-      overflow-y: auto;
       flex: 1;
+      overflow-y: auto;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    /* HAMBURGER TABS */
+    /* SIDEBAR NAVIGATION LIST */
+    .sidebar-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sidebar-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      color: var(--text-main);
+      background-color: var(--bg-card);
+      border: 1px solid var(--line);
+      transition: background-color 0.15s, border-color 0.15s;
+    }
+    .sidebar-nav-link:hover {
+      background-color: var(--bg-surface-2);
+      border-color: var(--primary);
+    }
+
+    /* AUSTRALIAN RESUME GUIDE CALLOUT */
+    .sidebar-guide-box {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .sidebar-guide-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+    }
+    .sidebar-guide-list {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* HAMBURGER HORIZONTAL TABS */
     .tablist-scroll {
       display: flex;
-      gap: 6px;
       overflow-x: auto;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 10px;
-      white-space: nowrap;
+      gap: 4px;
+      padding-bottom: 2px;
       scrollbar-width: none;
     }
     .tablist-scroll::-webkit-scrollbar {
       display: none;
     }
     .tab-btn {
-      padding: 7px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 700;
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      background-color: var(--bg-surface-2);
-      border: 1px solid transparent;
-      transition: all var(--trans-speed);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover {
+      color: var(--text-main);
     }
     .tab-btn.active {
-      background-color: var(--primary);
-      color: var(--primary-text);
+      color: var(--primary);
+      border-bottom-color: var(--primary);
     }
     .tab-panel {
       display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
+      padding-top: 6px;
     }
     .tab-panel.active {
       display: flex;
     }
+
+    /* SETTINGS CONTROLS */
     .setting-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
     .setting-label {
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       font-weight: 700;
-      color: var(--text-sub);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: var(--text-main);
     }
-    .setting-select, .setting-input {
-      width: 100%;
-      height: 42px;
+    .setting-select {
+      height: 38px;
       padding: 0 12px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--line);
@@ -499,189 +569,181 @@
       font-size: 0.9rem;
       outline: none;
     }
-    .setting-select:focus, .setting-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(82,102,67,0.18);
-    }
-
-    /* SIDEBAR NAVIGATION ITEMS */
-    .sidebar-nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      list-style: none;
-    }
-    .sidebar-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line-subtle);
-      background-color: var(--bg-card);
-      color: var(--text-main);
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all var(--trans-speed);
-    }
-    .sidebar-nav-link:hover {
-      border-color: var(--primary);
-      background-color: var(--bg-surface-2);
-    }
-    .sidebar-guide-box {
-      padding: 16px;
-      border-radius: var(--radius-md);
-      background-color: var(--bg-surface-2);
-      border: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .sidebar-guide-title {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .sidebar-guide-list {
-      padding-left: 20px;
-      font-size: 0.83rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
 
     /* MAIN APP WORKSPACE */
     .app-container {
-      max-width: 1600px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 24px 20px 60px;
     }
-    
-    /* MOBILE VIEW TOGGLER (FOR PHONE VIEWPORTS) */
-    .mobile-view-tabs {
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 16px;
-      padding: 4px;
-      background-color: var(--bg-surface-2);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--line);
-    }
-    .mobile-view-btn {
-      padding: 10px;
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      transition: all var(--trans-speed);
-    }
-    .mobile-view-btn.active {
-      background-color: var(--bg-card);
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* WORKSPACE GRID */
     .workspace-grid {
       display: grid;
-      grid-template-columns: minmax(420px, 0.92fr) minmax(540px, 1.08fr);
-      gap: 24px;
+      grid-template-columns: minmax(380px, 520px) 1fr;
+      gap: 28px;
       align-items: start;
     }
 
-    /* LEFT PANE: EDITOR */
+    /* MOBILE SWITCHER (PHONE SCREENS) */
+    .mobile-view-tabs {
+      display: none;
+      margin-bottom: 16px;
+      background-color: var(--bg-surface-2);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      gap: 6px;
+    }
+    .mobile-view-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .mobile-view-btn.active {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* LEFT PANE: EDITOR FORM */
     .editor-pane {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px;
     }
     .form-card {
       background-color: var(--bg-card);
-      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      border: 1px solid var(--line);
+      padding: 22px;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: border-color var(--trans-speed);
-    }
-    .form-card:hover {
-      border-color: var(--text-sub);
     }
     .card-header {
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
       border-bottom: 1px solid var(--line-subtle);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
     }
     .card-title {
       font-size: 1.05rem;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .card-subtitle {
       font-size: 0.82rem;
-      color: var(--text-sub);
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
     /* FORM FIELDS */
-    .field-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .field-grid-3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
     .field-group {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+    .field-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .field-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
     .field-label {
-      font-size: 0.82rem;
-      font-weight: 750;
+      font-size: 0.84rem;
+      font-weight: 700;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .field-desc {
-      font-size: 0.76rem;
-      color: var(--text-sub);
-      margin-top: -2px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
     }
     .form-input, .form-select, .form-textarea {
       width: 100%;
-      padding: 9px 12px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--line);
       background-color: var(--bg-surface);
       color: var(--text-main);
-      font-size: 0.88rem;
+      padding: 9px 12px;
+      font-size: 0.92rem;
       outline: none;
       transition: border-color var(--trans-speed), box-shadow var(--trans-speed);
     }
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(82,102,67,0.18);
-      background-color: var(--bg-card);
+      box-shadow: 0 0 0 3px rgba(82, 102, 67, 0.15);
     }
     .form-textarea {
       resize: vertical;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
-    /* STYLE SWATCHES */
+    /* SEGMENTED BUTTONS */
+    .segmented-group {
+      display: flex;
+      background-color: var(--bg-surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 3px;
+      gap: 4px;
+    }
+    .seg-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .seg-btn:hover {
+      color: var(--text-main);
+    }
+    .seg-btn.active {
+      background-color: var(--bg-card);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .seg-sub {
+      font-size: 0.76rem;
+      font-weight: normal;
+      opacity: 0.85;
+    }
+
+    /* STYLE SWATCHES GRID */
     .style-swatches-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .swatch-card {
       display: flex;
@@ -689,107 +751,103 @@
       align-items: center;
       gap: 6px;
       padding: 10px 6px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--line);
       background-color: var(--bg-surface);
       cursor: pointer;
-      transition: all var(--trans-speed);
+      transition: all 0.15s ease;
       text-align: center;
     }
     .swatch-card:hover {
-      border-color: var(--primary);
+      border-color: var(--text-muted);
       transform: translateY(-1px);
     }
     .swatch-card.active {
       border-color: var(--primary);
-      background-color: var(--bg-card);
+      background-color: var(--bg-surface-2);
       box-shadow: 0 0 0 2px var(--primary);
     }
     .swatch-circle {
-      width: 28px;
-      height: 28px;
-      border-radius: var(--radius-full);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
       border: 1px solid rgba(0,0,0,0.15);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     .swatch-name {
       font-size: 0.74rem;
-      font-weight: 750;
-      color: var(--text-main);
+      font-weight: 700;
       line-height: 1.2;
     }
 
-    /* ROLE BADGES */
-    .role-select-box {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    /* ROLE TARGET NOTE */
     .role-meta-note {
-      font-size: 0.8rem;
-      color: var(--primary);
-      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--text-muted);
       background-color: var(--bg-surface-2);
       padding: 8px 12px;
       border-radius: var(--radius-sm);
-      border-left: 3px solid var(--primary);
+      border-left: 3px solid var(--accent);
+      margin-top: 4px;
     }
 
-    /* SKILLS CHIP MANAGER */
-    .skills-editor {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    /* SKILLS CHIP LIST */
     .skills-chip-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
+      min-height: 40px;
+      padding: 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
     }
     .skill-chip-item {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
-      background-color: var(--bg-surface-2);
+      background-color: var(--bg-card);
       border: 1px solid var(--line);
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-main);
     }
     .skill-delete-btn {
-      width: 18px;
-      height: 18px;
-      border-radius: var(--radius-full);
-      background-color: var(--line);
+      border: none;
+      background: transparent;
       color: var(--text-muted);
-      font-size: 0.75rem;
-      line-height: 1;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
     }
     .skill-delete-btn:hover {
-      background-color: var(--accent);
-      color: #fff;
+      color: #dc2626;
     }
     .add-skill-row {
       display: flex;
       gap: 8px;
+      margin-top: 6px;
     }
 
-    /* DYNAMIC EXPERIENCE LIST */
+    /* EXPERIENCE ENTRIES LIST */
     .exp-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
     .exp-card {
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 14px;
       background-color: var(--bg-surface);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      position: relative;
     }
     .exp-header {
       display: flex;
@@ -797,67 +855,93 @@
       justify-content: space-between;
     }
     .exp-num {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .btn-remove-exp {
+      background: transparent;
+      border: none;
+      color: #dc2626;
       font-size: 0.78rem;
-      color: #c2410c;
       font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
     }
     .btn-remove-exp:hover {
       background-color: #fee2e2;
     }
     .btn-add-exp {
-      align-self: flex-start;
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      border: 1px dashed var(--line);
-      background-color: var(--bg-surface);
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
+      padding: 10px;
+      border-radius: var(--radius-md);
+      border: 1.5px dashed var(--line);
+      background-color: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
     .btn-add-exp:hover {
       border-color: var(--primary);
-      background-color: var(--bg-card);
+      color: var(--primary);
+      background-color: var(--bg-surface);
     }
 
-    /* CERTIFICATES CHECKLIST */
-    .cert-group {
+    /* REFEREES CARDS */
+    .referees-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .referee-input-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      background-color: var(--bg-surface);
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
+
+    /* CERTIFICATES & LICENCES CHECKLIST */
+    .cert-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
     .cert-group-title {
       font-size: 0.82rem;
-      font-weight: 750;
-      color: var(--text-sub);
-      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--accent);
+      margin-top: 4px;
     }
     .cert-item {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: var(--radius-sm);
       background-color: var(--bg-surface);
-      border: 1px solid var(--line-subtle);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: background-color 0.12s;
     }
     .cert-item:hover {
-      background-color: var(--bg-card);
-      border-color: var(--line);
+      background-color: var(--bg-surface-2);
     }
     .cert-item input[type="checkbox"] {
       margin-top: 3px;
-      width: 17px;
-      height: 17px;
       accent-color: var(--primary);
-      cursor: pointer;
+      width: 16px;
+      height: 16px;
     }
     .cert-info {
       display: flex;
@@ -865,7 +949,7 @@
       gap: 2px;
     }
     .cert-name {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       font-weight: 700;
       color: var(--text-main);
     }
@@ -892,21 +976,21 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
     }
     .preview-status {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 0.82rem;
-      font-weight: 750;
-      color: var(--text-muted);
+      font-weight: 700;
+      color: var(--text-main);
     }
     .status-dot {
       width: 8px;
       height: 8px;
-      border-radius: var(--radius-full);
-      background-color: #10b981;
-      display: inline-block;
+      border-radius: 50%;
+      background-color: #22c55e;
     }
     .preview-actions {
       display: flex;
@@ -914,25 +998,37 @@
       gap: 8px;
     }
     .zoom-ctrl {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
       overflow: hidden;
-      background-color: var(--bg-surface-2);
     }
     .zoom-btn {
       width: 28px;
       height: 28px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      border: none;
+      background: transparent;
       color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .zoom-btn:hover {
+      background-color: var(--line);
     }
     .zoom-label {
-      padding: 0 6px;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 700;
+      padding: 0 6px;
+      min-width: 42px;
+      text-align: center;
       color: var(--text-muted);
+      user-select: none;
     }
 
     /* A4 CANVAS SHELL */
@@ -945,11 +1041,23 @@
       overflow: auto;
       max-height: calc(100vh - 170px);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    /* A4 PAPER EXACT MODEL */
-    .resume-preview {
+    /* RESUME PREVIEW CONTAINER & SHEETS */
+    .resume-preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      transform-origin: top center;
+      transition: transform var(--trans-speed) var(--trans-ease);
+    }
+
+    /* EXACT A4 SHEET MODEL (210mm x 297mm) */
+    .resume-sheet {
       --cv-paper: #fffdf8;
       --cv-ink: #2f261f;
       --cv-muted: #6d6258;
@@ -959,24 +1067,107 @@
       box-sizing: border-box;
       width: 210mm;
       min-height: 297mm;
-      padding: 14mm 16mm 12mm;
       background-color: var(--cv-paper);
       color: var(--cv-ink);
       box-shadow: 0 16px 40px rgba(0,0,0,0.18);
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-      font-size: 10pt;
-      line-height: 1.42;
       display: flex;
       flex-direction: column;
-      gap: 4.5mm;
-      transform-origin: top center;
-      transition: background-color var(--trans-speed), color var(--trans-speed);
       position: relative;
+      transition: background-color var(--trans-speed), color var(--trans-speed), padding 0.15s;
     }
 
-    /* 8 A4 VISUAL STYLE PRESETS */
+    /* DENSITY SPACING PRESETS */
+    /* Balanced (Default) */
+    .resume-preview-container[data-density="balanced"] .resume-sheet {
+      padding: 10mm 15mm 9mm;
+      font-size: 9.3pt;
+      line-height: 1.38;
+      gap: 3.8mm;
+    }
+    .resume-preview-container[data-density="balanced"] .cv-name {
+      font-size: 24pt;
+    }
+    .resume-preview-container[data-density="balanced"] .cv-target {
+      font-size: 11pt;
+    }
+
+    /* Compact (Guarantees zero overflow even with extensive descriptions) */
+    .resume-preview-container[data-density="compact"] .resume-sheet {
+      padding: 8mm 13mm 6mm;
+      font-size: 8.8pt;
+      line-height: 1.30;
+      gap: 2.6mm;
+    }
+    .resume-preview-container[data-density="compact"] .cv-name {
+      font-size: 21pt;
+    }
+    .resume-preview-container[data-density="compact"] .cv-target {
+      font-size: 10pt;
+    }
+    .resume-preview-container[data-density="compact"] .cv-section h2 {
+      font-size: 8.8pt;
+      padding-bottom: 0.6mm;
+    }
+    .resume-preview-container[data-density="compact"] .cv-facts {
+      font-size: 8pt;
+      gap: 1mm 3mm;
+    }
+    .resume-preview-container[data-density="compact"] .cv-skills-grid {
+      gap: 1mm 4mm;
+      font-size: 8.4pt;
+    }
+
+    /* Spacious */
+    .resume-preview-container[data-density="spacious"] .resume-sheet {
+      padding: 13mm 16mm 11mm;
+      font-size: 10pt;
+      line-height: 1.44;
+      gap: 4.8mm;
+    }
+
+    /* PAGE MODE CONTROLS IN PREVIEW */
+    .resume-preview-container[data-pages="1"] .resume-sheet-2,
+    .resume-preview-container[data-pages="1"] .page-break-indicator {
+      display: none !important;
+    }
+    .resume-preview-container[data-pages="1"] .resume-sheet-1 {
+      height: 297mm;
+    }
+    .resume-preview-container[data-pages="1"] #pv-sec-bottom-1 {
+      display: grid !important;
+    }
+
+    .resume-preview-container[data-pages="2"] .resume-sheet-2 {
+      display: flex !important;
+    }
+    .resume-preview-container[data-pages="2"] .page-break-indicator {
+      display: flex !important;
+    }
+    .resume-preview-container[data-pages="2"] #pv-sec-bottom-1 {
+      display: none !important;
+    }
+
+    /* PAGE BREAK INDICATOR (ON SCREEN ONLY) */
+    .page-break-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 210mm;
+      padding: 8px 16px;
+      background: var(--bg-surface-2);
+      border: 1px dashed var(--accent);
+      border-radius: var(--radius-md);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* 8 A4 VISUAL STYLE PRESETS (CONTAINER APPLIED) */
     /* 1. Modern Cafe */
-    .resume-preview[data-style="modern-cafe"] {
+    .resume-preview-container[data-style="modern-cafe"] .resume-sheet {
       --cv-paper: #fffdf8;
       --cv-ink: #2f261f;
       --cv-muted: #6d6258;
@@ -984,7 +1175,7 @@
       --cv-accent: #697759;
     }
     /* 2. Clean Professional */
-    .resume-preview[data-style="clean-professional"] {
+    .resume-preview-container[data-style="clean-professional"] .resume-sheet {
       --cv-paper: #ffffff;
       --cv-ink: #172333;
       --cv-muted: #5e6975;
@@ -992,18 +1183,18 @@
       --cv-accent: #173b63;
     }
     /* 3. Boutique Hotel */
-    .resume-preview[data-style="boutique-hotel"] {
+    .resume-preview-container[data-style="boutique-hotel"] .resume-sheet {
       --cv-paper: #fffaf0;
       --cv-ink: #17332b;
       --cv-muted: #655d52;
       --cv-line: #d9c99f;
       --cv-accent: #205345;
     }
-    .resume-preview[data-style="boutique-hotel"] .cv-header {
+    .resume-preview-container[data-style="boutique-hotel"] .cv-header {
       border-bottom-color: #b39445;
     }
     /* 4. Fresh Minimal */
-    .resume-preview[data-style="fresh-minimal"] {
+    .resume-preview-container[data-style="fresh-minimal"] .resume-sheet {
       --cv-paper: #ffffff;
       --cv-ink: #202828;
       --cv-muted: #596565;
@@ -1011,7 +1202,7 @@
       --cv-accent: #317b68;
     }
     /* 5. Warm Hospitality */
-    .resume-preview[data-style="warm-hospitality"] {
+    .resume-preview-container[data-style="warm-hospitality"] .resume-sheet {
       --cv-paper: #fff8ee;
       --cv-ink: #422b23;
       --cv-muted: #745f54;
@@ -1019,7 +1210,7 @@
       --cv-accent: #9a4938;
     }
     /* 6. Contemporary Australian */
-    .resume-preview[data-style="contemporary-australian"] {
+    .resume-preview-container[data-style="contemporary-australian"] .resume-sheet {
       --cv-paper: #fdfaf4;
       --cv-ink: #303836;
       --cv-muted: #69716d;
@@ -1027,7 +1218,7 @@
       --cv-accent: #4e6d5d;
     }
     /* 7. ATS Classic */
-    .resume-preview[data-style="ats-classic"] {
+    .resume-preview-container[data-style="ats-classic"] .resume-sheet {
       --cv-paper: #ffffff;
       --cv-ink: #111111;
       --cv-muted: #333333;
@@ -1035,27 +1226,27 @@
       --cv-accent: #111111;
       box-shadow: none;
     }
-    .resume-preview[data-style="ats-classic"] .cv-name {
+    .resume-preview-container[data-style="ats-classic"] .cv-name {
       font-family: Arial, sans-serif;
     }
-    .resume-preview[data-style="ats-classic"] .cv-kicker,
-    .resume-preview[data-style="ats-classic"] .cv-footer {
+    .resume-preview-container[data-style="ats-classic"] .cv-kicker,
+    .resume-preview-container[data-style="ats-classic"] .cv-footer {
       letter-spacing: 0;
     }
     /* 8. Compact One-page */
-    .resume-preview[data-style="compact-one-page"] {
+    .resume-preview-container[data-style="compact-one-page"] .resume-sheet {
       --cv-paper: #ffffff;
       --cv-ink: #24302b;
       --cv-muted: #5b6862;
       --cv-line: #cfd8d3;
       --cv-accent: #405c50;
-      padding: 10mm 12mm;
-      font-size: 9pt;
-      line-height: 1.34;
-      gap: 3.5mm;
+      padding: 8mm 12mm 6mm;
+      font-size: 8.8pt;
+      line-height: 1.30;
+      gap: 2.8mm;
     }
-    .resume-preview[data-style="compact-one-page"] .cv-name {
-      font-size: 23pt;
+    .resume-preview-container[data-style="compact-one-page"] .cv-name {
+      font-size: 21pt;
     }
 
     /* CV INTERIOR ELEMENTS */
@@ -1064,13 +1255,18 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 16px;
-      padding-bottom: 4mm;
-      border-bottom: 2.5px solid var(--cv-accent);
+      padding-bottom: 3mm;
+      border-bottom: 2.2px solid var(--cv-accent);
+    }
+    .cv-header-mini {
+      padding-bottom: 2mm;
+      border-bottom: 1.5px solid var(--cv-line);
+      margin-bottom: 1mm;
     }
     .cv-kicker {
-      margin: 0 0 1.5mm;
+      margin: 0 0 1mm;
       color: var(--cv-accent);
-      font-size: 7.5pt;
+      font-size: 7.2pt;
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -1078,26 +1274,43 @@
     .cv-name {
       margin: 0;
       font-family: Georgia, serif;
-      font-size: 26pt;
+      font-size: 24pt;
       font-weight: 700;
       line-height: 1.05;
       color: var(--cv-ink);
       letter-spacing: -0.01em;
     }
+    .cv-name-mini {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--cv-ink);
+    }
     .cv-target {
-      margin: 2mm 0 0;
+      margin: 1.5mm 0 0;
       color: var(--cv-accent);
-      font-size: 11.5pt;
+      font-size: 11pt;
       font-weight: 800;
+    }
+    .cv-target-mini {
+      margin: 0.5mm 0 0;
+      color: var(--cv-accent);
+      font-size: 8.5pt;
+      font-weight: 700;
     }
     .cv-contact {
       display: flex;
       flex-direction: column;
-      gap: 1mm;
+      gap: 0.8mm;
       max-width: 48%;
       color: var(--cv-muted);
-      font-size: 8.5pt;
+      font-size: 8.4pt;
       text-align: right;
+    }
+    .cv-contact-mini {
+      max-width: 60%;
+      font-size: 8pt;
     }
     .cv-contact span {
       white-space: nowrap;
@@ -1107,14 +1320,14 @@
     .cv-section {
       display: flex;
       flex-direction: column;
-      gap: 2mm;
+      gap: 1.8mm;
     }
     .cv-section h2 {
       margin: 0;
-      padding-bottom: 1mm;
+      padding-bottom: 0.8mm;
       border-bottom: 1px solid var(--cv-line);
       color: var(--cv-accent);
-      font-size: 9.8pt;
+      font-size: 9.4pt;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1126,10 +1339,10 @@
     .cv-facts {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5mm 4mm;
-      margin-top: 1.5mm;
+      gap: 1.2mm 4mm;
+      margin-top: 1mm;
       color: var(--cv-muted);
-      font-size: 8.5pt;
+      font-size: 8.3pt;
       font-weight: 600;
     }
     .cv-facts span::before {
@@ -1143,57 +1356,62 @@
     .cv-skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5mm 6mm;
+      gap: 1.2mm 5mm;
       margin: 0;
-      padding-left: 4.5mm;
+      padding-left: 4mm;
       list-style-type: square;
     }
     .cv-skills-grid li {
-      font-size: 9pt;
+      font-size: 8.8pt;
       color: var(--cv-ink);
-      line-height: 1.35;
+      line-height: 1.32;
     }
 
     /* EXPERIENCE ENTRIES */
+    .cv-exp-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+    }
     .cv-entry {
       display: flex;
       flex-direction: column;
-      gap: 1.5mm;
+      gap: 1.2mm;
     }
     .cv-entry-heading {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
     .cv-entry-heading h3 {
       margin: 0;
-      font-size: 10pt;
+      font-size: 9.6pt;
       font-weight: 800;
       color: var(--cv-ink);
     }
     .cv-entry-heading .company {
-      font-size: 8.8pt;
+      font-size: 8.6pt;
       color: var(--cv-muted);
       font-weight: 600;
     }
     .cv-entry-heading time {
-      font-size: 8.2pt;
+      font-size: 8pt;
       color: var(--cv-muted);
       font-weight: 700;
       white-space: nowrap;
     }
     .cv-entry ul {
       margin: 0;
-      padding-left: 4.5mm;
+      padding-left: 4mm;
       display: flex;
       flex-direction: column;
-      gap: 1mm;
+      gap: 0.8mm;
       list-style-type: disc;
     }
     .cv-entry li {
-      font-size: 8.8pt;
-      line-height: 1.35;
+      font-size: 8.6pt;
+      line-height: 1.32;
       color: var(--cv-ink);
     }
 
@@ -1201,40 +1419,71 @@
     .cv-two-column {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8mm;
+      gap: 7mm;
     }
     .cv-two-column h3 {
-      font-size: 9.8pt;
+      font-size: 9.4pt;
       font-weight: 800;
       color: var(--cv-ink);
       margin: 0;
     }
     .cv-two-column p {
-      font-size: 8.8pt;
+      font-size: 8.6pt;
       color: var(--cv-muted);
       margin: 0.5mm 0 0;
     }
     .cv-two-column ul {
       margin: 0;
-      padding-left: 4.5mm;
+      padding-left: 4mm;
       list-style-type: disc;
       display: flex;
       flex-direction: column;
-      gap: 1mm;
+      gap: 0.8mm;
     }
     .cv-two-column li {
-      font-size: 8.8pt;
+      font-size: 8.5pt;
       color: var(--cv-ink);
+    }
+
+    /* REFEREES CARDS (2-PAGE MODE) */
+    .cv-referees-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+    .cv-referee-card {
+      border: 1px dashed var(--cv-line);
+      border-radius: 4px;
+      padding: 2.5mm 3.5mm;
+      background-color: rgba(0,0,0,0.015);
+    }
+    .cv-referee-card h3 {
+      margin: 0;
+      font-size: 9.2pt;
+      font-weight: 800;
+      color: var(--cv-ink);
+    }
+    .cv-referee-card .referee-role {
+      margin: 0.5mm 0 1mm;
+      font-size: 8.2pt;
+      color: var(--cv-accent);
+      font-weight: 700;
+    }
+    .cv-referee-card .referee-contact {
+      margin: 0;
+      font-size: 7.8pt;
+      color: var(--cv-muted);
+      line-height: 1.3;
     }
 
     /* FOOTER */
     .cv-footer {
       margin-top: auto;
-      padding-top: 2.5mm;
+      padding-top: 2.2mm;
       border-top: 1px solid var(--cv-line);
       display: flex;
       justify-content: space-between;
-      font-size: 7.2pt;
+      font-size: 7pt;
       color: var(--cv-muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1247,29 +1496,37 @@
       background-color: var(--bg-card);
       color: var(--text-main);
       box-shadow: var(--shadow-lg);
-      max-width: min(480px, 92vw);
-      padding: 24px;
+      max-width: min(520px, 94vw);
       margin: auto;
+      padding: 0;
     }
     .app-dialog::backdrop {
       background-color: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(2px);
     }
     .dialog-header {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 8px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+    .dialog-header h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0;
     }
     .dialog-body {
+      padding: 16px 20px;
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 20px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
     .dialog-actions {
       display: flex;
+      align-items: center;
       justify-content: flex-end;
       gap: 10px;
+      padding: 14px 20px;
+      border-top: 1px solid var(--line-subtle);
+      background-color: var(--bg-surface);
     }
 
     /* TOAST NOTIFICATION */
@@ -1277,58 +1534,45 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      z-index: 2000;
-      padding: 12px 20px;
-      border-radius: var(--radius-sm);
       background-color: var(--text-main);
-      color: var(--bg);
-      font-size: 0.86rem;
-      font-weight: 700;
-      box-shadow: var(--shadow-md);
-      transform: translateY(100px);
+      color: var(--bg-card);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      z-index: 200;
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+      transition: opacity 0.2s, transform 0.2s;
       pointer-events: none;
     }
     .toast-notice.show {
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
     }
 
-    /* RESPONSIVE LAYOUTS & FORCED MODES */
-    /* Forced Mobile Mode */
-    html[data-layout="mobile"] .workspace-grid {
-      grid-template-columns: 1fr;
-    }
-    html[data-layout="mobile"] .mobile-view-tabs {
-      display: grid;
-    }
-    html[data-layout="mobile"] .preview-pane {
-      position: static;
-    }
-
-    /* Forced Desktop Mode */
-    html[data-layout="desktop"] .workspace-grid {
-      grid-template-columns: minmax(420px, 0.92fr) minmax(540px, 1.08fr);
-    }
-    html[data-layout="desktop"] .mobile-view-tabs {
-      display: none !important;
-    }
-    html[data-layout="desktop"] .editor-pane,
-    html[data-layout="desktop"] .preview-pane {
-      display: flex !important;
-    }
-
-    /* Auto Responsive (Max Width 920px) */
-    @media (max-width: 960px) {
-      html[data-layout="auto"] .workspace-grid {
+    /* RESPONSIVE LAYOUTS */
+    @media (max-width: 1080px) {
+      .workspace-grid {
         grid-template-columns: 1fr;
       }
-      html[data-layout="auto"] .mobile-view-tabs {
-        display: grid;
-      }
-      html[data-layout="auto"] .preview-pane {
+      .preview-pane {
         position: static;
+      }
+      .mobile-view-tabs {
+        display: flex;
+      }
+      /* In mobile layout mode or narrow screen */
+      .editor-pane.tab-hidden,
+      .preview-pane.tab-hidden {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 0 12px;
       }
       .brand-title {
         font-size: 1rem;
@@ -1342,9 +1586,13 @@
       .style-swatches-grid {
         grid-template-columns: repeat(4, 1fr);
       }
+      .preview-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
-    /* PRINT RULES: PERFECT EXACT SINGLE-PAGE A4 */
+    /* PRINT RULES: PERFECT STRICT FIT & EXACT PAGE BREAK CONTROL */
     @page {
       size: A4 portrait;
       margin: 0;
@@ -1361,7 +1609,9 @@
       .mobile-view-tabs,
       .editor-pane,
       .preview-toolbar,
-      .toast-notice {
+      .toast-notice,
+      .page-break-indicator,
+      .app-dialog {
         display: none !important;
       }
       .app-container {
@@ -1384,21 +1634,75 @@
         margin: 0 !important;
         max-height: none !important;
         overflow: visible !important;
+        display: block !important;
       }
-      .resume-preview {
+      .resume-preview-container {
+        transform: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+      .resume-sheet {
         box-shadow: none !important;
         margin: 0 !important;
         width: 210mm !important;
-        min-height: 297mm !important;
-        max-height: 297mm !important;
-        padding: 12mm 15mm 10mm !important;
-        page-break-after: avoid !important;
-        page-break-inside: avoid !important;
+        box-sizing: border-box !important;
         print-color-adjust: exact !important;
         -webkit-print-color-adjust: exact !important;
       }
-      .cv-footer span:last-child {
+      
+      /* PRINT 1-PAGE MODE: ZERO OVERFLOW, STRICT 1 PAGE */
+      html[data-print-pages="1"],
+      html[data-print-pages="1"] body {
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .resume-preview-container[data-pages="1"] .resume-sheet-1 {
+        width: 210mm !important;
+        height: 294mm !important;
+        max-height: 294mm !important;
+        padding: 8mm 14mm 6mm !important;
+        overflow: hidden !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-after: avoid !important;
+        break-inside: avoid !important;
+      }
+      .resume-preview-container[data-pages="1"] .resume-sheet-2 {
         display: none !important;
+      }
+      .resume-preview-container[data-pages="1"] .cv-footer span:last-child {
+        display: none !important;
+      }
+
+      /* PRINT 2-PAGE MODE: CLEAN DELIBERATE BREAK ACROSS EXACTLY 2 PAGES */
+      html[data-print-pages="2"],
+      html[data-print-pages="2"] body {
+        width: 210mm !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .resume-preview-container[data-pages="2"] .resume-sheet-1 {
+        width: 210mm !important;
+        height: 295mm !important;
+        max-height: 295mm !important;
+        padding: 8mm 14mm 6mm !important;
+        overflow: hidden !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .resume-preview-container[data-pages="2"] .resume-sheet-2 {
+        width: 210mm !important;
+        height: 295mm !important;
+        max-height: 295mm !important;
+        padding: 8mm 14mm 6mm !important;
+        overflow: hidden !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
     }
   </style>
@@ -1418,7 +1722,7 @@
             <span class="lang-en">Australian Résumé Studio</span>
             <span class="lang-zh sub-zh">澳洲打工度假履歷工作台</span>
           </h1>
-          <span class="version-tag">v1</span>
+          <span class="version-tag">v2</span>
         </div>
       </div>
       <div class="topbar-right">
@@ -1444,14 +1748,15 @@
     <nav id="bookmarks-bar" class="bookmarks-bar" aria-label="Section navigation">
       <button id="btn-collapse-bookmarks" class="bookmarks-toggle-btn" type="button" aria-label="Collapse bookmarks">−</button>
       <div class="bookmarks-scroll">
-        <a href="#sec-style" class="bookmark-chip active">1. <span class="lang-en">Style & Role</span><span class="lang-zh">樣式與職缺</span></a>
-        <a href="#sec-contact" class="bookmark-chip">2. <span class="lang-en">Contact Info</span><span class="lang-zh">基本聯絡資料</span></a>
-        <a href="#sec-profile" class="bookmark-chip">3. <span class="lang-en">Profile & Visa</span><span class="lang-zh">簡介與簽證</span></a>
-        <a href="#sec-skills" class="bookmark-chip">4. <span class="lang-en">Core Skills</span><span class="lang-zh">核心技能</span></a>
-        <a href="#sec-experience" class="bookmark-chip">5. <span class="lang-en">Experience</span><span class="lang-zh">工作經歷</span></a>
-        <a href="#sec-education" class="bookmark-chip">6. <span class="lang-en">Education</span><span class="lang-zh">學歷</span></a>
-        <a href="#sec-certifications" class="bookmark-chip">7. <span class="lang-en">Licences</span><span class="lang-zh">證照與駕照</span></a>
-        <a href="#sec-export" class="bookmark-chip">8. <span class="lang-en">PDF Export</span><span class="lang-zh">匯出與求職</span></a>
+        <a href="#sec-format" class="bookmark-chip active">1. <span class="lang-en">Page Format</span><span class="lang-zh">頁數與版型</span></a>
+        <a href="#sec-style" class="bookmark-chip">2. <span class="lang-en">Style & Role</span><span class="lang-zh">樣式與職缺</span></a>
+        <a href="#sec-contact" class="bookmark-chip">3. <span class="lang-en">Contact Info</span><span class="lang-zh">基本聯絡資料</span></a>
+        <a href="#sec-profile" class="bookmark-chip">4. <span class="lang-en">Profile & Visa</span><span class="lang-zh">簡介與簽證</span></a>
+        <a href="#sec-skills" class="bookmark-chip">5. <span class="lang-en">Core Skills</span><span class="lang-zh">核心技能</span></a>
+        <a href="#sec-experience" class="bookmark-chip">6. <span class="lang-en">Experience</span><span class="lang-zh">工作經歷</span></a>
+        <a href="#sec-education" class="bookmark-chip">7. <span class="lang-en">Education</span><span class="lang-zh">學歷與證照</span></a>
+        <a href="#sec-referees" class="bookmark-chip" id="bm-referees">8. <span class="lang-en">Referees</span><span class="lang-zh">推薦人</span></a>
+        <a href="#sec-export" class="bookmark-chip">9. <span class="lang-en">PDF Export</span><span class="lang-zh">匯出與求職</span></a>
       </div>
     </nav>
   </div>
@@ -1468,29 +1773,29 @@
     <div class="drawer-body">
       <!-- Section Links -->
       <ul class="sidebar-nav-list">
+        <li><a href="#sec-format" class="sidebar-nav-link">📄 <span><span class="lang-en">1-Page vs 2-Page Standard</span><span class="lang-zh">澳洲單頁與雙頁規範</span></span></a></li>
         <li><a href="#sec-style" class="sidebar-nav-link">🎨 <span><span class="lang-en">Style & Job Role</span><span class="lang-zh">樣式與目標職缺</span></span></a></li>
         <li><a href="#sec-contact" class="sidebar-nav-link">👤 <span><span class="lang-en">Personal Contact</span><span class="lang-zh">個人聯絡資料</span></span></a></li>
         <li><a href="#sec-profile" class="sidebar-nav-link">📝 <span><span class="lang-en">Summary & Visa Rights</span><span class="lang-zh">簡介與工作權限</span></span></a></li>
         <li><a href="#sec-skills" class="sidebar-nav-link">⚡ <span><span class="lang-en">Core Skills</span><span class="lang-zh">核心技能重點</span></span></a></li>
         <li><a href="#sec-experience" class="sidebar-nav-link">💼 <span><span class="lang-en">Work Experience</span><span class="lang-zh">相關工作經歷</span></span></a></li>
-        <li><a href="#sec-education" class="sidebar-nav-link">🎓 <span><span class="lang-en">Education</span><span class="lang-zh">最高學歷</span></span></a></li>
-        <li><a href="#sec-certifications" class="sidebar-nav-link">📜 <span><span class="lang-en">Licences & Tickets</span><span class="lang-zh">澳洲證照與駕照</span></span></a></li>
+        <li><a href="#sec-education" class="sidebar-nav-link">🎓 <span><span class="lang-en">Education & Tickets</span><span class="lang-zh">最高學歷與澳洲證照</span></span></a></li>
+        <li><a href="#sec-referees" class="sidebar-nav-link">👥 <span><span class="lang-en">Professional Referees</span><span class="lang-zh">專業推薦人資料</span></span></a></li>
       </ul>
 
-      <!-- Australian Résumé Rules for WHV -->
+      <!-- Australian Résumé Rules for WHV & Skilled -->
       <div class="sidebar-guide-box">
         <div class="sidebar-guide-title">
           <span>🇦🇺</span>
-          <span class="lang-en">Australian CV Rules</span>
-          <span class="lang-zh">澳洲求職履歷必守原則</span>
+          <span class="lang-en">Australian CV Standards</span>
+          <span class="lang-zh">澳洲求職篇幅黃金準則</span>
         </div>
         <ul class="sidebar-guide-list">
-          <li><strong><span class="lang-en">Strict 1 Page:</span><span class="lang-zh">嚴格一頁 A4：</span></strong> <span class="lang-en">Hospitality & entry roles review in 10 seconds. Keep concise.</span><span class="lang-zh">澳洲餐飲與初階職缺主管僅看 10 秒，一頁為黃金標準。</span></li>
-          <li><strong><span class="lang-en">No Personal Photo:</span><span class="lang-zh">絕對不放照片：</span></strong> <span class="lang-en">Anti-discrimination laws. Never include age, gender, marital status or DOB.</span><span class="lang-zh">澳洲就業反歧視法規定：不可放照片、年齡、性別、婚姻或生日。</span></li>
-          <li><strong><span class="lang-en">Clear Visa Details:</span><span class="lang-zh">寫明簽證與到期日：</span></strong> <span class="lang-en">State WHV 417/462 and valid expiry so employers know you have legal rights.</span><span class="lang-zh">明確標示簽證類別（417/462）與到期年月，確認合法全職工作權。</span></li>
-          <li><strong><span class="lang-en">Roster & Start Date:</span><span class="lang-zh">強調可立即上工與班表彈性：</span></strong> <span class="lang-en">Immediate start, weekends, early mornings and evenings are major advantages.</span><span class="lang-zh">清晨開班、週末、國定假日無限制是澳洲雇主最重視的優勢。</span></li>
-          <li><strong><span class="lang-en">Transferable Skills:</span><span class="lang-zh">跨領域強調共通技能：</span></strong> <span class="lang-en">Highlight speed, cash handling, customer care, multitasking & physical stamina.</span><span class="lang-zh">突顯收銀找零、外語溝通、多工處理、團隊合作與體力耐受度。</span></li>
-          <li><strong><span class="lang-en">Local Tickets:</span><span class="lang-zh">必備澳洲證照：</span></strong> <span class="lang-en">WA RSA (liquor), Food Handler (DoFoodSafely), White Card (construction).</span><span class="lang-zh">酒類服務必備 RSA、食品從業 DoFoodSafely、工地建築需白卡。</span></li>
+          <li><strong><span class="lang-en">WHV / Hospitality: Strict 1 Page:</span><span class="lang-zh">打工度假／餐旅服務：嚴格 1 頁：</span></strong> <span class="lang-en">Venue managers scan walk-in CVs in 10-15 seconds. Spilling onto page 2 looks sloppy.</span><span class="lang-zh">店經理於非尖峰僅看 10~15 秒，單張利落不散頁；溢出 2 行到第 2 頁是嚴重排版扣分。</span></li>
+          <li><strong><span class="lang-en">Skilled / Corporate: 2 Pages:</span><span class="lang-zh">辦公室／專業技術：標準 2 頁：</span></strong> <span class="lang-en">Requires STAR accomplishments, multiple career phases and 2 Australian referees.</span><span class="lang-zh">澳洲中高階求職網需完整 STAR 成效、多段資歷與 2 位推薦人，兩頁皆須充實飽滿。</span></li>
+          <li><strong><span class="lang-en">No Photo / No Age:</span><span class="lang-zh">絕對不放照片與年齡：</span></strong> <span class="lang-en">Anti-discrimination acts forbid photos, age, gender, marital status, or DOB.</span><span class="lang-zh">依澳洲反歧視法：嚴禁附大頭照、年齡、性別、婚姻狀態或出生年月日。</span></li>
+          <li><strong><span class="lang-en">Visa Rights & Availability:</span><span class="lang-zh">簽證與到工排班放第一：</span></strong> <span class="lang-en">State Subclass 417/462, expiry, immediate start and weekend flexibility prominently.</span><span class="lang-zh">務必標示 417/462 簽證與有效期限，強調立即上工與週末／清晨排班彈性。</span></li>
+          <li><strong><span class="lang-en">Mandatory Tickets:</span><span class="lang-zh">備妥必備澳洲證照：</span></strong> <span class="lang-en">WA RSA (alcohol), Food Handler (DoFoodSafely), White Card (construction sites).</span><span class="lang-zh">酒吧餐廳必備 RSA、餐飲 DoFoodSafely、工地勞務需白卡。</span></li>
         </ul>
       </div>
     </div>
@@ -1618,11 +1923,58 @@
       <!-- LEFT COLUMN: RESUME EDITOR FORM -->
       <section class="editor-pane" id="editor-pane">
         
-        <!-- CARD 1: COMBINATION (8 STYLES & 12 ROLES) -->
+        <!-- CARD 1: PAGE FORMAT & SPACING DENSITY (CRITICAL USER CONTROL) -->
+        <article class="form-card" id="sec-format">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">1. <span class="lang-en">Page Format & Print Density</span><span class="lang-zh">履歷篇幅與列印排版密度</span></h2>
+              <p class="card-subtitle"><span class="lang-en">Choose exact 1-Page A4 or comprehensive 2-Page A4.</span><span class="lang-zh">切換嚴格單頁 A4（打工度假首選）或雙頁詳細版（技術與多段經歷）。</span></p>
+            </div>
+          </div>
+
+          <!-- Page Length Mode Selector -->
+          <div class="field-group">
+            <label class="field-label"><span class="lang-en">Australian Résumé Length Mode</span><span class="lang-zh">履歷頁數模式</span></label>
+            <div class="segmented-group">
+              <button type="button" class="seg-btn active" id="seg-page-1">
+                📄 <span class="lang-en">1 Page A4</span><span class="lang-zh">1 頁 A4</span>
+                <span class="seg-sub">(WHV 首選)</span>
+              </button>
+              <button type="button" class="seg-btn" id="seg-page-2">
+                📑 <span class="lang-en">2 Pages A4</span><span class="lang-zh">2 頁 A4</span>
+                <span class="seg-sub">(專業雙頁)</span>
+              </button>
+            </div>
+            <p id="page-mode-explanation" class="role-meta-note">
+              <strong>💡 澳洲規格建議：</strong> 打工度假（餐飲、咖啡師、清潔、房務、倉儲、農場）強烈建議 <strong>1 頁</strong>！店經理 15 秒快速瀏覽，單張利落不散頁。若為辦公室、工程、技術移民或需列推薦人，請選 <strong>2 頁</strong>。
+            </p>
+          </div>
+
+          <!-- Spacing Density Controls -->
+          <div class="field-group">
+            <label class="field-label"><span class="lang-en">Spacing Density (Prevent Print Overflow)</span><span class="lang-zh">排版密度（確保單頁無溢出）</span></label>
+            <div class="segmented-group">
+              <button type="button" class="seg-btn" id="seg-dense-compact">
+                <span class="lang-en">Compact</span><span class="lang-zh">緊湊</span>
+                <span class="seg-sub">(字多防跨頁)</span>
+              </button>
+              <button type="button" class="seg-btn active" id="seg-dense-balanced">
+                <span class="lang-en">Balanced</span><span class="lang-zh">標準</span>
+                <span class="seg-sub">(黃金比例)</span>
+              </button>
+              <button type="button" class="seg-btn" id="seg-dense-spacious">
+                <span class="lang-en">Spacious</span><span class="lang-zh">舒朗</span>
+                <span class="seg-sub">(字少填滿)</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: COMBINATION (8 STYLES & 12 ROLES) -->
         <article class="form-card" id="sec-style">
           <div class="card-header">
             <div>
-              <h2 class="card-title">1. <span class="lang-en">Style & Target Combination</span><span class="lang-zh">視覺樣式與目標職缺</span></h2>
+              <h2 class="card-title">2. <span class="lang-en">Style & Target Role</span><span class="lang-zh">視覺樣式與目標職缺</span></h2>
               <p class="card-subtitle"><span class="lang-en">8 Australian layouts × 12 targeted roles = 96 combinations.</span><span class="lang-zh">8 種澳洲風格版型 × 12 種熱門職缺＝96 種專業組合。</span></p>
             </div>
           </div>
@@ -1645,11 +1997,11 @@
           </div>
         </article>
 
-        <!-- CARD 2: PERSONAL CONTACT DETAILS -->
+        <!-- CARD 3: PERSONAL CONTACT DETAILS -->
         <article class="form-card" id="sec-contact">
           <div class="card-header">
             <div>
-              <h2 class="card-title">2. <span class="lang-en">Personal Contact Information</span><span class="lang-zh">個人基本聯絡資料</span></h2>
+              <h2 class="card-title">3. <span class="lang-en">Personal Contact Information</span><span class="lang-zh">個人基本聯絡資料</span></h2>
               <p class="card-subtitle"><span class="lang-en">Australian recruiters need quick phone & email contact.</span><span class="lang-zh">提供澳洲雇主最快可聯絡之資訊。</span></p>
             </div>
           </div>
@@ -1677,23 +2029,23 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label" for="inp-location"><span class="lang-en">Location</span><span class="lang-zh">目前所在城市與區域</span></label>
+            <label class="field-label" for="inp-location"><span class="lang-en">Location / Suburb</span><span class="lang-zh">目前所在城市與區域（方便確認通勤）</span></label>
             <input type="text" id="inp-location" class="form-input" placeholder="e.g. Perth, Western Australia" maxlength="80">
           </div>
         </article>
 
-        <!-- CARD 3: PROFESSIONAL SUMMARY & WORK RIGHTS -->
+        <!-- CARD 4: PROFESSIONAL SUMMARY & WORK RIGHTS -->
         <article class="form-card" id="sec-profile">
           <div class="card-header">
             <div>
-              <h2 class="card-title">3. <span class="lang-en">Professional Summary & Visa Rights</span><span class="lang-zh">個人簡介與工作權限</span></h2>
+              <h2 class="card-title">4. <span class="lang-en">Professional Summary & Visa Rights</span><span class="lang-zh">個人簡介與工作權限</span></h2>
               <p class="card-subtitle"><span class="lang-en">Clearly communicate legal work rights, roster, and key pitch.</span><span class="lang-zh">向澳洲雇主清晰傳達工作權、到工日與時間彈性。</span></p>
             </div>
           </div>
 
           <div class="field-group">
             <label class="field-label" for="inp-summary"><span class="lang-en">Professional Profile Summary</span><span class="lang-zh">職涯精華自述（3~4 句）</span></label>
-            <textarea id="inp-summary" class="form-textarea" rows="4" placeholder="Brief professional pitch highlighting speed, accuracy, service mindset and enthusiasm..."></textarea>
+            <textarea id="inp-summary" class="form-textarea" rows="3" placeholder="Brief professional pitch highlighting speed, accuracy, service mindset and enthusiasm..."></textarea>
             <span class="field-desc"><span class="lang-en">Tip: Auto-updates when you switch target roles, or you can freely write your own.</span><span class="lang-zh">小提示：切換上方職缺時會自動產生推薦草稿，您亦可依個人經歷自訂修改。</span></span>
           </div>
 
@@ -1718,11 +2070,11 @@
           </div>
         </article>
 
-        <!-- CARD 4: CORE SKILLS -->
+        <!-- CARD 5: CORE SKILLS -->
         <article class="form-card" id="sec-skills">
           <div class="card-header">
             <div>
-              <h2 class="card-title">4. <span class="lang-en">Core Transferable Skills</span><span class="lang-zh">核心技能與強項</span></h2>
+              <h2 class="card-title">5. <span class="lang-en">Core Transferable Skills</span><span class="lang-zh">核心技能與強項</span></h2>
               <p class="card-subtitle"><span class="lang-en">5 to 6 bullet points highlighting your transferable capabilities.</span><span class="lang-zh">精選 5 至 6 項關鍵技能，展現跨領域即戰力。</span></p>
             </div>
           </div>
@@ -1740,12 +2092,12 @@
           </div>
         </article>
 
-        <!-- CARD 5: WORK EXPERIENCE -->
+        <!-- CARD 6: WORK EXPERIENCE -->
         <article class="form-card" id="sec-experience">
           <div class="card-header">
             <div>
-              <h2 class="card-title">5. <span class="lang-en">Professional Experience</span><span class="lang-zh">工作與實務經歷</span></h2>
-              <p class="card-subtitle"><span class="lang-en">Highlight relevant responsibilities, teamwork and customer achievements.</span><span class="lang-zh">呈現任職職稱、單位、時間與量化或具體成果。</span></p>
+              <h2 class="card-title">6. <span class="lang-en">Professional Experience</span><span class="lang-zh">工作與實務經歷</span></h2>
+              <p class="card-subtitle"><span class="lang-en">Highlight relevant responsibilities, teamwork and customer achievements.</span><span class="lang-zh">呈現任職職稱、單位、時間與具體成效。</span></p>
             </div>
           </div>
 
@@ -1758,48 +2110,39 @@
           </button>
         </article>
 
-        <!-- CARD 6: EDUCATION -->
+        <!-- CARD 7: EDUCATION & CERTIFICATES -->
         <article class="form-card" id="sec-education">
           <div class="card-header">
             <div>
-              <h2 class="card-title">6. <span class="lang-en">Education</span><span class="lang-zh">學歷背景</span></h2>
-              <p class="card-subtitle"><span class="lang-en">Formal degree, college, or diploma. Keep concise.</span><span class="lang-zh">填寫最高學歷學位與畢業年份。</span></p>
+              <h2 class="card-title">7. <span class="lang-en">Education & Qualifications</span><span class="lang-zh">學歷與澳洲必備證照</span></h2>
+              <p class="card-subtitle"><span class="lang-en">Formal degree, driving permits & mandatory tickets.</span><span class="lang-zh">最高學歷學位、國際駕照與從業資格。</span></p>
             </div>
           </div>
 
+          <!-- Education -->
           <div class="field-grid-3">
             <div class="field-group">
               <label class="field-label" for="inp-edu-award"><span class="lang-en">Degree / Award</span><span class="lang-zh">學位或文憑名稱</span></label>
-              <input type="text" id="inp-edu-award" class="form-input" placeholder="e.g. Bachelor's Degree in Physics">
+              <input type="text" id="inp-edu-award" class="form-input" placeholder="e.g. Bachelor's Degree in Business">
             </div>
             <div class="field-group">
               <label class="field-label" for="inp-edu-inst"><span class="lang-en">Institution / University</span><span class="lang-zh">學校名稱</span></label>
-              <input type="text" id="inp-edu-inst" class="form-input" placeholder="e.g. National Kaohsiung Normal University">
+              <input type="text" id="inp-edu-inst" class="form-input" placeholder="e.g. National Taiwan University">
             </div>
             <div class="field-group">
               <label class="field-label" for="inp-edu-year"><span class="lang-en">Graduation Year</span><span class="lang-zh">畢業年份</span></label>
-              <input type="text" id="inp-edu-year" class="form-input" placeholder="e.g. 2018">
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 7: CERTIFICATES & LICENCES CHECKLIST -->
-        <article class="form-card" id="sec-certifications">
-          <div class="card-header">
-            <div>
-              <h2 class="card-title">7. <span class="lang-en">Licences & Certifications</span><span class="lang-zh">澳洲證照與各國駕照</span></h2>
-              <p class="card-subtitle"><span class="lang-en">Checked items will appear automatically on your printed résumé.</span><span class="lang-zh">勾選之項目將自動列入 A4 履歷之證照欄位。</span></p>
+              <input type="text" id="inp-edu-year" class="form-input" placeholder="e.g. 2021">
             </div>
           </div>
 
           <!-- Group A: Driving Licences -->
-          <div class="cert-group">
+          <div class="cert-group" style="margin-top: 6px;">
             <h4 class="cert-group-title"><span class="lang-en">Driving Licences</span><span class="lang-zh">駕駛執照</span></h4>
             <label class="cert-item">
               <input type="checkbox" data-cert-id="taiwan-driver" checked>
               <div class="cert-info">
                 <span class="cert-name">Taiwan Driver Licence / 臺灣汽車駕照</span>
-                <span class="cert-tag"><span class="lang-en">Official licence with English translation / NAATI</span><span class="lang-zh">備妥官方有效正本與 NAATI 英文譯本</span></span>
+                <span class="cert-tag"><span class="lang-en">Official licence with English NAATI translation</span><span class="lang-zh">有效正本與 NAATI 英文譯本</span></span>
               </div>
             </label>
             <label class="cert-item">
@@ -1818,7 +2161,7 @@
               <input type="checkbox" data-cert-id="wa-food-handler">
               <div class="cert-info">
                 <span class="cert-name">WA Food Handler Training (DoFoodSafely) / 西澳食品處理人員認證</span>
-                <span class="cert-tag"><span class="lang-en">Recognised hygiene training required for food handlers</span><span class="lang-zh">西澳衛生部認可之基礎食品安全與衛生培訓證明</span></span>
+                <span class="cert-tag"><span class="lang-en">Recognised hygiene training required for food handlers</span><span class="lang-zh">西澳衛生部認可之基礎食品安全與衛生證明</span></span>
               </div>
             </label>
             <label class="cert-item">
@@ -1832,7 +2175,7 @@
               <input type="checkbox" data-cert-id="first-aid">
               <div class="cert-info">
                 <span class="cert-name">Provide First Aid & CPR (HLTAID011) / 澳洲急救與 CPR 證書</span>
-                <span class="cert-tag"><span class="lang-en">Nationally accredited first aid certification</span><span class="lang-zh">全澳認可急救合格證書，餐旅與戶外工作加分</span></span>
+                <span class="cert-tag"><span class="lang-en">Nationally accredited first aid certification</span><span class="lang-zh">全澳認可急救合格證書，餐旅與戶外加分</span></span>
               </div>
             </label>
           </div>
@@ -1844,7 +2187,7 @@
               <input type="checkbox" data-cert-id="white-card">
               <div class="cert-info">
                 <span class="cert-name">General Construction Induction (White Card WA) / 西澳工安白卡</span>
-                <span class="cert-tag"><span class="lang-en">Mandatory safety induction for construction sites</span><span class="lang-zh">澳洲工地、拆卸、勞務、裝修現場必備工安證照</span></span>
+                <span class="cert-tag"><span class="lang-en">Mandatory safety induction for construction sites</span><span class="lang-zh">澳洲工地、拆卸、勞務現場必備工安證照</span></span>
               </div>
             </label>
           </div>
@@ -1856,11 +2199,56 @@
           </div>
         </article>
 
-        <!-- CARD 8: EXPORT & TOOLS -->
+        <!-- CARD 8: REFEREES (CRUCIAL FOR AUSTRALIAN 2-PAGE RESUMES) -->
+        <article class="form-card" id="sec-referees">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">8. <span class="lang-en">Professional Referees</span><span class="lang-zh">專業推薦人（雙頁模式專用）</span></h2>
+              <p class="card-subtitle"><span class="lang-en">Australian 2-page CVs standardly list 2 referees.</span><span class="lang-zh">澳洲 2 頁式履歷標準包含 2 位前主管／推薦人聯絡方式。</span></p>
+            </div>
+          </div>
+
+          <label class="cert-item" style="margin-bottom: 6px;">
+            <input type="checkbox" id="chk-include-referees" checked>
+            <div class="cert-info">
+              <span class="cert-name"><span class="lang-en">Include named referees on Sheet 2</span><span class="lang-zh">在第 2 頁顯示完整推薦人資料</span></span>
+              <span class="cert-tag"><span class="lang-en">Uncheck to display "References available upon request" instead.</span><span class="lang-zh">若取消勾選，將顯示「References: Available upon request」。</span></span>
+            </div>
+          </label>
+
+          <div class="referees-list" id="referees-input-container">
+            <!-- Referee 1 -->
+            <div class="referee-input-card">
+              <span class="exp-num">Referee #1 / 第一推薦人</span>
+              <div class="field-grid-2">
+                <input type="text" id="inp-ref-1-name" class="form-input" placeholder="Referee Name (e.g. David Smith)">
+                <input type="text" id="inp-ref-1-role" class="form-input" placeholder="Role & Company (e.g. Store Manager · Louisa Coffee)">
+              </div>
+              <div class="field-grid-2">
+                <input type="text" id="inp-ref-1-phone" class="form-input" placeholder="Phone (e.g. +61 411 222 333)">
+                <input type="email" id="inp-ref-1-email" class="form-input" placeholder="Email (e.g. david.smith@example.com)">
+              </div>
+            </div>
+            <!-- Referee 2 -->
+            <div class="referee-input-card">
+              <span class="exp-num">Referee #2 / 第二推薦人</span>
+              <div class="field-grid-2">
+                <input type="text" id="inp-ref-2-name" class="form-input" placeholder="Referee Name (e.g. Sarah Lin)">
+                <input type="text" id="inp-ref-2-role" class="form-input" placeholder="Role & Company (e.g. Senior Supervisor · Uniqlo)">
+              </div>
+              <div class="field-grid-2">
+                <input type="text" id="inp-ref-2-phone" class="form-input" placeholder="Phone (e.g. +61 422 333 444)">
+                <input type="email" id="inp-ref-2-email" class="form-input" placeholder="Email (e.g. sarah.lin@example.com)">
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 9: EXPORT & TOOLS -->
         <article class="form-card" id="sec-export">
           <div class="card-header">
             <div>
-              <h2 class="card-title">8. <span class="lang-en">Export & Application Tools</span><span class="lang-zh">匯出與求職投遞輔助</span></h2>
+              <h2 class="card-title">9. <span class="lang-en">Export & Application Tools</span><span class="lang-zh">匯出與求職投遞輔助</span></h2>
               <p class="card-subtitle"><span class="lang-en">Quick actions to print PDF or copy plain text for Seek / Indeed.</span><span class="lang-zh">一鍵列印 A4 PDF 或複製純文字版以投遞各大求職網。</span></p>
             </div>
           </div>
@@ -1884,14 +2272,27 @@
             <span class="status-dot"></span>
             <span id="label-active-style">Modern Café</span>
             <span>·</span>
-            <span id="label-page-count"><span class="lang-en">Exact 1 Page A4</span><span class="lang-zh">標準 1 頁 A4</span></span>
+            <span id="label-page-badge" style="color: var(--accent);">Exact 1 Page A4</span>
+          </div>
+
+          <!-- Page Mode Quick Switch in Preview Toolbar -->
+          <div class="segmented-group" style="padding: 2px;">
+            <button type="button" id="btn-tb-page-1" class="seg-btn active" style="padding: 4px 10px; font-size: 0.78rem;">📄 1 Page</button>
+            <button type="button" id="btn-tb-page-2" class="seg-btn" style="padding: 4px 10px; font-size: 0.78rem;">📑 2 Pages</button>
+          </div>
+
+          <!-- Density Quick Switch -->
+          <div class="segmented-group" style="padding: 2px;">
+            <button type="button" id="btn-tb-dense-compact" class="seg-btn" style="padding: 4px 8px; font-size: 0.74rem;" title="Compact Spacing">緊湊</button>
+            <button type="button" id="btn-tb-dense-balanced" class="seg-btn active" style="padding: 4px 8px; font-size: 0.74rem;" title="Balanced Spacing">標準</button>
+            <button type="button" id="btn-tb-dense-spacious" class="seg-btn" style="padding: 4px 8px; font-size: 0.74rem;" title="Spacious Spacing">舒朗</button>
           </div>
 
           <div class="preview-actions">
             <!-- Zoom Controls -->
             <div class="zoom-ctrl">
               <button id="btn-zoom-out" class="zoom-btn" type="button" title="Zoom out">−</button>
-              <span id="label-zoom" class="zoom-label">92%</span>
+              <span id="label-zoom" class="zoom-label">90%</span>
               <button id="btn-zoom-in" class="zoom-btn" type="button" title="Zoom in">+</button>
               <button id="btn-zoom-reset" class="zoom-btn" type="button" title="Fit to width" style="width: 32px; font-size: 0.72rem;">FIT</button>
             </div>
@@ -1904,87 +2305,186 @@
 
         <!-- Scrollable Canvas Shell -->
         <div class="preview-canvas-shell" id="preview-shell">
-          <!-- A4 Canvas Document -->
-          <article id="resume-preview" class="resume-preview" data-style="modern-cafe" aria-label="Live Australian Résumé">
+          <!-- A4 Canvas Container -->
+          <div id="resume-preview" class="resume-preview-container" data-style="modern-cafe" data-pages="1" data-density="balanced" aria-label="Live Australian Résumé">
             
-            <!-- CV Header -->
-            <header class="cv-header">
-              <div>
-                <p class="cv-kicker">TARGETED AUSTRALIAN RÉSUMÉ</p>
-                <h1 id="pv-name" class="cv-name">Yunkumom</h1>
-                <p id="pv-role" class="cv-target">Café All-rounder</p>
-              </div>
-              <div class="cv-contact">
-                <span id="pv-location">Perth, Western Australia</span>
-                <span id="pv-email">yunkumom@gmail.com</span>
-                <span id="pv-phone">+61 412 345 678</span>
-              </div>
-            </header>
+            <!-- SHEET 1 -->
+            <article class="resume-sheet resume-sheet-1" id="resume-sheet-1">
+              <!-- CV Header -->
+              <header class="cv-header">
+                <div>
+                  <p class="cv-kicker">TARGETED AUSTRALIAN RÉSUMÉ</p>
+                  <h1 id="pv-name" class="cv-name">Yunkumom</h1>
+                  <p id="pv-role" class="cv-target">Café All-rounder</p>
+                </div>
+                <div class="cv-contact">
+                  <span id="pv-location">Perth, Western Australia</span>
+                  <span id="pv-email">yunkumom@gmail.com</span>
+                  <span id="pv-phone">+61 412 345 678</span>
+                </div>
+              </header>
 
-            <!-- CV Professional Profile -->
-            <section class="cv-section">
-              <h2>Professional Profile</h2>
-              <p id="pv-summary">Energetic, customer-focused team member with proven experience in fast-paced retail and food environments. Known for friendly customer interactions, accurate cash handling, and rapid learning of point-of-sale systems. Seeking a Café All-rounder role with an energetic Perth team where reliability and attention to detail contribute directly to smooth daily operations.</p>
-              <div class="cv-facts">
-                <span id="pv-start">Available: Immediately</span>
-                <span id="pv-availability">Roster: Full-time · Weekends & Mornings</span>
-                <span id="pv-english">English: Fluent · Clear Communication</span>
-              </div>
-            </section>
+              <!-- CV Professional Profile -->
+              <section class="cv-section">
+                <h2>Professional Profile</h2>
+                <p id="pv-summary">Energetic, customer-focused team member with proven experience in fast-paced retail and food environments. Known for friendly customer interactions, accurate cash handling, and rapid learning of point-of-sale systems. Seeking a Café All-rounder role with an energetic Perth team where reliability and attention to detail contribute directly to smooth daily operations.</p>
+                <div class="cv-facts">
+                  <span id="pv-start">Available: Immediately</span>
+                  <span id="pv-availability">Roster: Full-time · Weekends & Mornings</span>
+                  <span id="pv-english">English: Fluent · Clear Communication</span>
+                </div>
+              </section>
 
-            <!-- CV Core Skills -->
-            <section class="cv-section">
-              <h2>Core Skills</h2>
-              <ul id="pv-skills" class="cv-skills-grid">
-                <!-- Injected via JS -->
-              </ul>
-            </section>
-
-            <!-- CV Professional Experience -->
-            <section class="cv-section">
-              <h2>Professional Experience</h2>
-              <div id="pv-experience-list" style="display: flex; flex-direction: column; gap: 3.5mm;">
-                <!-- Injected via JS -->
-              </div>
-            </section>
-
-            <!-- CV Two Column: Education & Licences -->
-            <section class="cv-section cv-two-column">
-              <div>
-                <h2>Education</h2>
-                <h3 id="pv-edu-award">Bachelor's Degree in Business</h3>
-                <p id="pv-edu-inst">National Taiwan University · 2021</p>
-              </div>
-              <div>
-                <h2>Licences & Work Rights</h2>
-                <ul id="pv-licences-list">
+              <!-- CV Core Skills -->
+              <section class="cv-section">
+                <h2>Core Skills</h2>
+                <ul id="pv-skills" class="cv-skills-grid">
                   <!-- Injected via JS -->
                 </ul>
-              </div>
-            </section>
+              </section>
 
-            <!-- CV Footer -->
-            <footer class="cv-footer">
-              <span id="pv-footer-tag">Yunkumom · PERTH</span>
-              <span>AUSTRALIAN WORKING HOLIDAY RÉSUMÉ · CONFIDENTIAL</span>
-            </footer>
+              <!-- CV Professional Experience (Primary Experience on Sheet 1) -->
+              <section class="cv-section">
+                <h2>Professional Experience</h2>
+                <div id="pv-experience-list-1" class="cv-exp-container">
+                  <!-- Injected via JS -->
+                </div>
+              </section>
 
-          </article>
+              <!-- CV Two Column: Education & Licences (Shown on Sheet 1 in 1-Page mode) -->
+              <section class="cv-section cv-two-column" id="pv-sec-bottom-1">
+                <div>
+                  <h2>Education</h2>
+                  <h3 id="pv-edu-award">Bachelor's Degree in Business</h3>
+                  <p id="pv-edu-inst">National Taiwan University · 2021</p>
+                </div>
+                <div>
+                  <h2>Licences & Work Rights</h2>
+                  <ul id="pv-licences-list-1">
+                    <!-- Injected via JS -->
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Sheet 1 Footer -->
+              <footer class="cv-footer">
+                <span id="pv-footer-tag-1">Yunkumom · PERTH</span>
+                <span id="pv-footer-note-1">AUSTRALIAN WORKING HOLIDAY RÉSUMÉ · CONFIDENTIAL</span>
+              </footer>
+            </article>
+
+            <!-- PAGE BREAK INDICATOR (2-PAGE MODE ONLY ON SCREEN) -->
+            <div class="page-break-indicator" id="pv-page-divider">
+              <span>📄 --- End of Page 1 · Continued on Page 2 (第一頁結束 · 接續第二頁) ---</span>
+            </div>
+
+            <!-- SHEET 2 (SHOWN ONLY IN 2-PAGE MODE) -->
+            <article class="resume-sheet resume-sheet-2" id="resume-sheet-2">
+              <!-- Mini Running Header on Sheet 2 -->
+              <header class="cv-header cv-header-mini">
+                <div>
+                  <h2 id="pv-name-2" class="cv-name-mini">Yunkumom</h2>
+                  <p id="pv-role-2" class="cv-target-mini">Café All-rounder</p>
+                </div>
+                <div class="cv-contact cv-contact-mini">
+                  <span id="pv-contact-line-2">yunkumom@gmail.com · +61 412 345 678 · Perth, WA</span>
+                </div>
+              </header>
+
+              <!-- Additional Work Experiences on Sheet 2 -->
+              <section class="cv-section">
+                <h2>Previous Employment Experience</h2>
+                <div id="pv-experience-list-2" class="cv-exp-container">
+                  <!-- Injected via JS -->
+                </div>
+              </section>
+
+              <!-- Education & Licences on Sheet 2 -->
+              <section class="cv-section cv-two-column" id="pv-sec-bottom-2">
+                <div>
+                  <h2>Education</h2>
+                  <h3 id="pv-edu-award-2">Bachelor's Degree in Business</h3>
+                  <p id="pv-edu-inst-2">National Taiwan University · 2021</p>
+                </div>
+                <div>
+                  <h2>Licences & Work Rights</h2>
+                  <ul id="pv-licences-list-2">
+                    <!-- Injected via JS -->
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Professional Referees on Sheet 2 -->
+              <section class="cv-section" id="pv-sec-referees">
+                <h2>Professional Referees</h2>
+                <div id="pv-referees-list" class="cv-referees-grid">
+                  <!-- Injected via JS -->
+                </div>
+              </section>
+
+              <!-- Sheet 2 Footer -->
+              <footer class="cv-footer">
+                <span id="pv-footer-tag-2">Yunkumom · PERTH</span>
+                <span>PAGE 2 OF 2 · REFERENCES VERIFIED</span>
+              </footer>
+            </article>
+
+          </div>
         </div>
       </section>
     </div>
   </main>
 
+  <!-- PRINT SETUP GUIDANCE MODAL -->
+  <dialog id="dialog-print-helper" class="app-dialog">
+    <div class="dialog-header">
+      <h4>
+        <span class="lang-en">Australian A4 Print / PDF Guide</span>
+        <span class="lang-zh">A4 PDF 下載與列印最佳設定指引</span>
+      </h4>
+    </div>
+    <div class="dialog-body">
+      <div style="background: var(--bg-surface-2); padding: 12px 14px; border-radius: var(--radius-sm); border-left: 4px solid var(--primary); margin-bottom: 14px;">
+        <p style="font-weight: 700; margin-bottom: 4px; color: var(--text-main);">
+          <span class="lang-en">Current Selected Mode:</span><span class="lang-zh">目前選定格式：</span>
+          <span id="print-guide-mode-tag" style="color: var(--accent);">Exact 1 Page A4 (標準單頁)</span>
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;" id="print-guide-mode-tip">
+          打工度假餐飲服務店面強烈推薦 1 頁，澳洲主管僅花 15 秒快速瀏覽。
+        </p>
+      </div>
+      <p style="font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+        <span class="lang-en">To ensure zero unwanted pages in Chrome / Safari:</span>
+        <span class="lang-zh">為確保預覽與列印完全符合選定頁數，請在瀏覽器列印視窗檢查：</span>
+      </p>
+      <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: var(--text-main);">
+        <li><strong><span class="lang-en">Destination:</span><span class="lang-zh">印表機目標：</span></strong> <span class="lang-en">Save as PDF</span><span class="lang-zh">選擇「另存為 PDF」</span></li>
+        <li><strong><span class="lang-en">Paper size:</span><span class="lang-zh">紙張尺寸：</span></strong> <span class="lang-en">A4 (210 × 297 mm)</span><span class="lang-zh">選擇「A4」</span></li>
+        <li><strong><span class="lang-en">Margins:</span><span class="lang-zh">邊界設定：</span></strong> <span style="color: #c2410c; font-weight: 700;"><span class="lang-en">None (無邊距)</span><span class="lang-zh">選擇「無」或「自訂 0」</span></span> <span class="lang-zh">（避免預設邊界縮小列印高度導致產生空白頁）</span></li>
+        <li><strong><span class="lang-en">Options:</span><span class="lang-zh">選項設定：</span></strong> <span class="lang-en">Uncheck 'Headers and footers', Check 'Background graphics'</span><span class="lang-zh">取消勾選「頁首與頁尾」，勾選「背景圖形」</span></li>
+      </ul>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" id="btn-dialog-print-cancel" class="btn-action-outline">
+        <span class="lang-en">Cancel</span><span class="lang-zh">取消</span>
+      </button>
+      <button type="button" id="btn-dialog-print-confirm" class="btn-action-primary">
+        🖨️ <span class="lang-en">Open Print Dialog</span><span class="lang-zh">開啟列印視窗</span>
+      </button>
+    </div>
+  </dialog>
+
   <!-- CONFIRM RESET DIALOG -->
   <dialog id="dialog-confirm-reset" class="app-dialog">
-    <h4 class="dialog-header"><span class="lang-en">Reset All Inputs?</span><span class="lang-zh">確定清空所有內容？</span></h4>
-    <p class="dialog-body">
-      <span class="lang-en">This will clear your customized resume fields and restore a blank template. This action cannot be undone.</span>
-      <span class="lang-zh">這將會清除您目前輸入的所有內容並恢復初始狀態。此操作無法復原。</span>
-    </p>
+    <div class="dialog-header">
+      <h4><span class="lang-en">Reset All Inputs?</span><span class="lang-zh">確定清空所有內容？</span></h4>
+    </div>
+    <div class="dialog-body">
+      <p><span class="lang-en">This will clear all contact details, profile, work experience and skills. You will get a completely fresh form.</span><span class="lang-zh">此操作將清空所有聯絡資訊、簡介、經歷與技能欄位，讓您從頭填寫全新履歷。</span></p>
+    </div>
     <div class="dialog-actions">
       <button id="btn-dialog-cancel" class="btn-action-outline" type="button"><span class="lang-en">Cancel</span><span class="lang-zh">取消</span></button>
-      <button id="btn-dialog-confirm" class="btn-action-primary" type="button" style="background-color: #c2410c;"><span class="lang-en">Yes, Clear All</span><span class="lang-zh">確認清空</span></button>
+      <button id="btn-dialog-confirm" class="btn-action-primary" type="button" style="background-color: #c2410c;"><span class="lang-en">Yes, Clear All</span><span class="lang-zh">確定清空</span></button>
     </div>
   </dialog>
 
@@ -2194,6 +2694,8 @@
 
       // DEFAULT STATE WITH AUTHENTIC WORKING HOLIDAY INITIAL SAMPLE
       const DEFAULT_STATE = {
+        pageMode: '1', // '1' (Strict 1-page) or '2' (Comprehensive 2-page)
+        density: 'balanced', // 'compact', 'balanced', 'spacious'
         style: 'modern-cafe',
         role: 'cafe-all-rounder',
         name: 'Yunkumom',
@@ -2250,12 +2752,29 @@
           'first-aid': false,
           'white-card': false
         },
-        customCert: ''
+        customCert: '',
+        includeReferees: true,
+        referees: [
+          {
+            name: 'David Smith',
+            role: 'Store Manager',
+            company: 'Louisa Coffee Co.',
+            phone: '+61 411 222 333',
+            email: 'david.smith@example.com'
+          },
+          {
+            name: 'Sarah Lin',
+            role: 'Senior Floor Supervisor',
+            company: 'Uniqlo Retail',
+            phone: '+61 422 333 444',
+            email: 'sarah.lin@example.com'
+          }
+        ]
       };
 
       // STORAGE KEYS
-      const STORAGE_KEY_DATA = 'yunkumom:australia:resume:data:v1';
-      const STORAGE_KEY_SETTINGS = 'yunkumom:australia:resume:settings:v1';
+      const STORAGE_KEY_DATA = 'yunkumom:australia:resume:data:v2';
+      const STORAGE_KEY_SETTINGS = 'yunkumom:australia:resume:settings:v2';
 
       // RUNTIME STATE
       let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
@@ -2264,7 +2783,7 @@
         theme: 'eye-care',
         layout: 'auto',
         bookmarksCollapsed: false,
-        zoom: 0.92
+        zoom: 0.90
       };
 
       // UTILITY HELPERS
@@ -2389,7 +2908,6 @@
           const chosenRole = ROLES.find(x => x.id === select.value);
           if (chosenRole) {
             appState.role = chosenRole.id;
-            // Update title and summary suggestions
             appState.targetTitle = chosenRole.en;
             $('inp-target-title').value = chosenRole.en;
             appState.summary = chosenRole.summary;
@@ -2455,7 +2973,7 @@
               </div>
               <div class="field-group">
                 <label class="field-label">Company & Location <span class="lang-zh">（任職公司與城市）</span></label>
-                <input type="text" class="form-input exp-inp-company" data-index="${idx}" value="${safeText(exp.company)}" placeholder="e.g. Gloria Jean's Coffee · Taipei">
+                <input type="text" class="form-input exp-inp-company" data-index="${idx}" value="${safeText(exp.company)}" placeholder="e.g. Louisa Coffee · Taipei">
               </div>
             </div>
             <div class="field-group">
@@ -2533,17 +3051,89 @@
 
         $('inp-custom-cert').value = appState.customCert || '';
 
+        // Referees
+        if (appState.referees && appState.referees.length > 0) {
+          $('inp-ref-1-name').value = appState.referees[0].name || '';
+          $('inp-ref-1-role').value = appState.referees[0].role || '';
+          $('inp-ref-1-phone').value = appState.referees[0].phone || '';
+          $('inp-ref-1-email').value = appState.referees[0].email || '';
+        }
+        if (appState.referees && appState.referees.length > 1) {
+          $('inp-ref-2-name').value = appState.referees[1].name || '';
+          $('inp-ref-2-role').value = appState.referees[1].role || '';
+          $('inp-ref-2-phone').value = appState.referees[1].phone || '';
+          $('inp-ref-2-email').value = appState.referees[1].email || '';
+        }
+        $('chk-include-referees').checked = appState.includeReferees !== false;
+
         // Checkboxes
         document.querySelectorAll('[data-cert-id]').forEach(cb => {
           const id = cb.getAttribute('data-cert-id');
           cb.checked = Boolean(appState.certificates[id]);
         });
 
+        updatePageModeUI();
+        updateDensityUI();
         updateStyleSelection();
         $('sel-target-role').value = appState.role;
         updateRoleFocusNote();
         renderSkillsEditor();
         renderExperiencesEditor();
+      }
+
+      // PAGE MODE TOGGLES (1 PAGE VS 2 PAGES)
+      function setPageMode(mode) {
+        appState.pageMode = mode;
+        updatePageModeUI();
+        renderPreview();
+        saveState();
+        showToast(mode === '1' ? 'Switched to Exact 1-Page A4 Mode' : 'Switched to Comprehensive 2-Page A4 Mode');
+      }
+
+      function updatePageModeUI() {
+        const is1 = appState.pageMode === '1';
+        $('seg-page-1').classList.toggle('active', is1);
+        $('seg-page-2').classList.toggle('active', !is1);
+        $('btn-tb-page-1').classList.toggle('active', is1);
+        $('btn-tb-page-2').classList.toggle('active', !is1);
+
+        $('label-page-badge').textContent = is1 ? 'Exact 1 Page A4' : '2 Pages A4 (Comprehensive)';
+        $('label-page-badge').style.color = is1 ? 'var(--primary)' : 'var(--accent)';
+
+        // Toggle referee section display hint
+        const refBookmark = $('bm-referees');
+        if (refBookmark) {
+          refBookmark.style.display = is1 ? 'none' : 'inline-flex';
+        }
+        const refCard = $('sec-referees');
+        if (refCard) {
+          refCard.style.opacity = is1 ? '0.6' : '1';
+        }
+        const expNote = $('page-mode-explanation');
+        if (expNote) {
+          expNote.innerHTML = is1
+            ? '<strong>💡 澳洲規格建議（1 頁模式）：</strong> 打工度假餐旅、咖啡師、門市零售、清潔、房務、倉儲農場首選！店經理 15 秒快速瀏覽，單張利落不散頁。'
+            : '<strong>💡 澳洲規格建議（2 頁模式）：</strong> 辦公室白領、專業工程、技術移民或多段經歷首選！第一頁為核心職能與重點職位，第二頁為前期經歷、學歷證照與推薦人。';
+        }
+      }
+
+      // DENSITY TOGGLES
+      function setDensity(density) {
+        appState.density = density;
+        updateDensityUI();
+        renderPreview();
+        saveState();
+      }
+
+      function updateDensityUI() {
+        const d = appState.density || 'balanced';
+        $('seg-dense-compact').classList.toggle('active', d === 'compact');
+        $('seg-dense-balanced').classList.toggle('active', d === 'balanced');
+        $('seg-dense-spacious').classList.toggle('active', d === 'spacious');
+
+        $('btn-tb-dense-compact').classList.toggle('active', d === 'compact');
+        $('btn-tb-dense-balanced').classList.toggle('active', d === 'balanced');
+        $('btn-tb-dense-spacious').classList.toggle('active', d === 'spacious');
       }
 
       // ATTACH INPUT CHANGE LISTENERS
@@ -2567,6 +3157,7 @@
         bind('inp-visa', 'visa');
         bind('inp-summary', 'summary');
 
+        // Education
         $('inp-edu-award').addEventListener('input', e => {
           appState.education.award = e.target.value;
           renderPreview();
@@ -2583,11 +3174,61 @@
           saveState();
         });
 
+        // Custom Cert
         $('inp-custom-cert').addEventListener('input', e => {
           appState.customCert = e.target.value;
           renderPreview();
           saveState();
         });
+
+        // Referees
+        const syncReferees = () => {
+          appState.referees = [
+            {
+              name: $('inp-ref-1-name').value,
+              role: $('inp-ref-1-role').value,
+              phone: $('inp-ref-1-phone').value,
+              email: $('inp-ref-1-email').value
+            },
+            {
+              name: $('inp-ref-2-name').value,
+              role: $('inp-ref-2-role').value,
+              phone: $('inp-ref-2-phone').value,
+              email: $('inp-ref-2-email').value
+            }
+          ];
+          renderPreview();
+          saveState();
+        };
+
+        $('inp-ref-1-name').addEventListener('input', syncReferees);
+        $('inp-ref-1-role').addEventListener('input', syncReferees);
+        $('inp-ref-1-phone').addEventListener('input', syncReferees);
+        $('inp-ref-1-email').addEventListener('input', syncReferees);
+        $('inp-ref-2-name').addEventListener('input', syncReferees);
+        $('inp-ref-2-role').addEventListener('input', syncReferees);
+        $('inp-ref-2-phone').addEventListener('input', syncReferees);
+        $('inp-ref-2-email').addEventListener('input', syncReferees);
+
+        $('chk-include-referees').addEventListener('change', e => {
+          appState.includeReferees = e.target.checked;
+          renderPreview();
+          saveState();
+        });
+
+        // Page mode buttons
+        $('seg-page-1').addEventListener('click', () => setPageMode('1'));
+        $('seg-page-2').addEventListener('click', () => setPageMode('2'));
+        $('btn-tb-page-1').addEventListener('click', () => setPageMode('1'));
+        $('btn-tb-page-2').addEventListener('click', () => setPageMode('2'));
+
+        // Density buttons
+        $('seg-dense-compact').addEventListener('click', () => setDensity('compact'));
+        $('seg-dense-balanced').addEventListener('click', () => setDensity('balanced'));
+        $('seg-dense-spacious').addEventListener('click', () => setDensity('spacious'));
+        $('btn-tb-dense-compact').addEventListener('click', () => setDensity('compact'));
+        $('btn-tb-dense-balanced').addEventListener('click', () => setDensity('balanced'));
+        $('btn-tb-dense-spacious').addEventListener('click', () => setDensity('spacious'));
 
         // Add Skill
         const addSkill = () => {
@@ -2632,12 +3273,40 @@
         });
       }
 
+      // HELPER TO GENERATE CERTIFICATE LIST ITEMS
+      function buildCertListItems() {
+        const certLabels = {
+          'taiwan-driver': 'Taiwan Driver Licence (Full)',
+          'idp': 'International Driving Permit (IDP)',
+          'wa-food-handler': 'WA Food Handler Certificate (DoFoodSafely)',
+          'rsa-wa': 'Provide Responsible Service of Alcohol (RSA WA)',
+          'first-aid': 'Provide First Aid & CPR (HLTAID011)',
+          'white-card': 'WA Construction Safety Induction (White Card)'
+        };
+        const items = [];
+        if (appState.visa.trim()) {
+          items.push(`<li>${safeText(appState.visa.trim())}</li>`);
+        }
+        Object.keys(certLabels).forEach(key => {
+          if (appState.certificates[key]) {
+            items.push(`<li>${safeText(certLabels[key])}</li>`);
+          }
+        });
+        if (appState.customCert && appState.customCert.trim()) {
+          items.push(`<li>${safeText(appState.customCert.trim())}</li>`);
+        }
+        return items.join('');
+      }
+
       // RENDER LIVE A4 PREVIEW
       function renderPreview() {
-        const preview = $('resume-preview');
-        preview.setAttribute('data-style', appState.style);
+        const container = $('resume-preview');
+        container.setAttribute('data-style', appState.style);
+        container.setAttribute('data-pages', appState.pageMode || '1');
+        container.setAttribute('data-density', appState.density || 'balanced');
+        document.documentElement.setAttribute('data-print-pages', appState.pageMode || '1');
 
-        // Header
+        // Header 1
         $('pv-name').textContent = appState.name.trim() || 'YOUR NAME';
         $('pv-role').textContent = appState.targetTitle.trim() || 'Target Role';
         $('pv-location').textContent = appState.location.trim();
@@ -2667,13 +3336,14 @@
           skillsList.appendChild(li);
         });
 
-        // Experiences
-        const expContainer = $('pv-experience-list');
-        expContainer.innerHTML = '';
-        appState.experiences.forEach(exp => {
-          const div = document.createElement('div');
-          div.className = 'cv-entry';
-          div.innerHTML = `
+        // Experiences Rendering based on Page Mode
+        const expList1 = $('pv-experience-list-1');
+        const expList2 = $('pv-experience-list-2');
+        expList1.innerHTML = '';
+        expList2.innerHTML = '';
+
+        const makeExpHtml = exp => `
+          <div class="cv-entry">
             <div class="cv-entry-heading">
               <div>
                 <h3>${safeText(exp.title)}</h3>
@@ -2684,53 +3354,89 @@
             <ul>
               ${exp.bullets.map(b => `<li>${safeText(b)}</li>`).join('')}
             </ul>
-          `;
-          expContainer.appendChild(div);
-        });
+          </div>
+        `;
 
-        // Education
+        if (appState.pageMode === '1') {
+          // In 1-Page mode: all experiences are rendered on Sheet 1
+          appState.experiences.forEach(exp => {
+            const div = document.createElement('div');
+            div.innerHTML = makeExpHtml(exp);
+            expList1.appendChild(div.firstElementChild);
+          });
+        } else {
+          // In 2-Page mode: Experience #1 goes on Sheet 1, subsequent go on Sheet 2
+          if (appState.experiences.length > 0) {
+            const div = document.createElement('div');
+            div.innerHTML = makeExpHtml(appState.experiences[0]);
+            expList1.appendChild(div.firstElementChild);
+          }
+          if (appState.experiences.length > 1) {
+            for (let i = 1; i < appState.experiences.length; i++) {
+              const div = document.createElement('div');
+              div.innerHTML = makeExpHtml(appState.experiences[i]);
+              expList2.appendChild(div.firstElementChild);
+            }
+          } else {
+            // Placeholder if only 1 experience in 2-page mode
+            const div = document.createElement('div');
+            div.innerHTML = makeExpHtml({
+              title: 'Prior Professional Experience',
+              company: 'Previous Employer',
+              dates: '2020 – 2022',
+              bullets: ['Demonstrated high reliability, customer care and collaborative team support.']
+            });
+            expList2.appendChild(div.firstElementChild);
+          }
+        }
+
+        // Education & Licences on Sheet 1 and Sheet 2
+        const certHtml = buildCertListItems();
         $('pv-edu-award').textContent = appState.education.award.trim() || 'Highest Qualification';
         $('pv-edu-inst').textContent = `${appState.education.institution.trim()} · ${appState.education.year.trim()}`;
+        $('pv-licences-list-1').innerHTML = certHtml;
 
-        // Licences & Certifications list
-        const licencesList = $('pv-licences-list');
-        licencesList.innerHTML = '';
+        $('pv-edu-award-2').textContent = appState.education.award.trim() || 'Highest Qualification';
+        $('pv-edu-inst-2').textContent = `${appState.education.institution.trim()} · ${appState.education.year.trim()}`;
+        $('pv-licences-list-2').innerHTML = certHtml;
 
-        // Visa item
-        if (appState.visa.trim()) {
-          const li = document.createElement('li');
-          li.textContent = appState.visa.trim();
-          licencesList.appendChild(li);
+        // Sheet 2 Running Header
+        $('pv-name-2').textContent = appState.name.trim() || 'YOUR NAME';
+        $('pv-role-2').textContent = appState.targetTitle.trim() || 'Target Role';
+        $('pv-contact-line-2').textContent = `${appState.email.trim()} · ${appState.phone.trim() || 'Phone on request'} · ${appState.location.trim()}`;
+
+        // Referees on Sheet 2
+        const refList = $('pv-referees-list');
+        refList.innerHTML = '';
+        if (appState.includeReferees && appState.referees && appState.referees.length > 0) {
+          appState.referees.forEach(r => {
+            const card = document.createElement('div');
+            card.className = 'cv-referee-card';
+            card.innerHTML = `
+              <h3>${safeText(r.name || 'Referee Name')}</h3>
+              <p class="referee-role">${safeText(r.role || 'Position & Company')}</p>
+              <p class="referee-contact">Phone: ${safeText(r.phone || 'Available on request')} | Email: ${safeText(r.email || '')}</p>
+            `;
+            refList.appendChild(card);
+          });
+        } else {
+          refList.innerHTML = `
+            <div class="cv-referee-card" style="grid-column: 1 / -1; text-align: center; padding: 4mm;">
+              <p style="font-weight: 700; color: var(--cv-muted); font-size: 8.8pt;">Professional and personal references available upon request.</p>
+            </div>
+          `;
         }
 
-        // Standard certifications map
-        const certLabels = {
-          'taiwan-driver': 'Taiwan Driver Licence (Full)',
-          'idp': 'International Driving Permit (IDP)',
-          'wa-food-handler': 'WA Food Handler Certificate (DoFoodSafely)',
-          'rsa-wa': 'Provide Responsible Service of Alcohol (RSA WA)',
-          'first-aid': 'Provide First Aid & CPR (HLTAID011)',
-          'white-card': 'WA Construction Safety Induction (White Card)'
-        };
-
-        Object.keys(certLabels).forEach(key => {
-          if (appState.certificates[key]) {
-            const li = document.createElement('li');
-            li.textContent = certLabels[key];
-            licencesList.appendChild(li);
-          }
-        });
-
-        // Custom cert
-        if (appState.customCert && appState.customCert.trim()) {
-          const li = document.createElement('li');
-          li.textContent = appState.customCert.trim();
-          licencesList.appendChild(li);
-        }
-
-        // Footer
+        // Footers
         const candidateCity = appState.location.trim().split(',')[0] || 'Australia';
-        $('pv-footer-tag').textContent = `${(appState.name.trim() || 'CANDIDATE')} · ${candidateCity.toUpperCase()}`;
+        $('pv-footer-tag-1').textContent = `${(appState.name.trim() || 'CANDIDATE')} · ${candidateCity.toUpperCase()}`;
+        $('pv-footer-tag-2').textContent = `${(appState.name.trim() || 'CANDIDATE')} · ${candidateCity.toUpperCase()}`;
+
+        if (appState.pageMode === '1') {
+          $('pv-footer-note-1').textContent = 'AUSTRALIAN WORKING HOLIDAY RÉSUMÉ · CONFIDENTIAL';
+        } else {
+          $('pv-footer-note-1').textContent = 'PAGE 1 OF 2 · CONTINUED ON PAGE 2';
+        }
       }
 
       // ZOOM CONTROLLER
@@ -2752,27 +3458,47 @@
           saveSettings();
         });
         $('btn-zoom-reset').addEventListener('click', () => {
-          // Calculate auto fit based on shell width
           const shell = $('preview-shell');
           if (shell) {
             const shellW = shell.clientWidth - 48;
-            const a4WidthPx = 794; // approx 210mm at 96dpi
+            const a4WidthPx = 794;
             const fit = +(shellW / a4WidthPx).toFixed(2);
             appSettings.zoom = Math.max(0.45, Math.min(1.0, fit));
           } else {
-            appSettings.zoom = 0.92;
+            appSettings.zoom = 0.90;
           }
           applyZoom();
           saveSettings();
         });
       }
 
-      // PRINT TRIGGER
-      function triggerPrint() {
-        showToast('Preparing A4 PDF print view...');
-        setTimeout(() => {
-          window.print();
-        }, 300);
+      // PRINT SETUP HELPER MODAL & TRIGGER
+      function initPrintSystem() {
+        const modal = $('dialog-print-helper');
+        const showPrintModal = () => {
+          const is1 = appState.pageMode === '1';
+          $('print-guide-mode-tag').textContent = is1 ? 'Exact 1 Page A4 (標準單頁)' : '2 Pages A4 (專業雙頁)';
+          $('print-guide-mode-tip').textContent = is1
+            ? '打工度假餐飲服務店面強烈推薦 1 頁，澳洲主管僅花 15 秒快速瀏覽，單張利落不散頁。'
+            : '澳洲專業技術與辦公室職缺標準 2 頁，兩頁均已最佳化排版並含推薦人。';
+          modal.showModal();
+        };
+
+        $('btn-print-pdf').addEventListener('click', showPrintModal);
+        $('btn-preview-print').addEventListener('click', showPrintModal);
+        $('btn-export-pdf-bottom').addEventListener('click', showPrintModal);
+
+        $('btn-dialog-print-cancel').addEventListener('click', () => {
+          modal.close();
+        });
+
+        $('btn-dialog-print-confirm').addEventListener('click', () => {
+          modal.close();
+          showToast('Opening system print preview...');
+          setTimeout(() => {
+            window.print();
+          }, 250);
+        });
       }
 
       // PLAIN TEXT SEEK / INDEED GENERATOR
@@ -2813,7 +3539,14 @@
         });
         if (appState.customCert) lines.push(`• ${appState.customCert}`);
         lines.push('');
-        lines.push('References: Available upon request.');
+        if (appState.pageMode === '2' && appState.includeReferees && appState.referees) {
+          lines.push('--- PROFESSIONAL REFEREES ---');
+          appState.referees.forEach(r => {
+            lines.push(`• ${r.name} (${r.role}) - Phone: ${r.phone} | Email: ${r.email}`);
+          });
+        } else {
+          lines.push('References: Available upon request.');
+        }
 
         const fullText = lines.join('\n');
         navigator.clipboard.writeText(fullText).then(() => {
@@ -2829,7 +3562,7 @@
           const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(appState, null, 2));
           const dlAnchor = document.createElement('a');
           dlAnchor.setAttribute('href', dataStr);
-          dlAnchor.setAttribute('download', `Australian_Resume_${appState.name.replace(/\s+/g, '_')}_v1.json`);
+          dlAnchor.setAttribute('download', `Australian_Resume_${appState.name.replace(/\s+/g, '_')}_v2.json`);
           dlAnchor.click();
           showToast('Backup JSON downloaded successfully.');
         });
@@ -2866,7 +3599,6 @@
         });
         $('btn-dialog-confirm').addEventListener('click', () => {
           appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
-          // Clear name and personal inputs for fresh start
           appState.name = '';
           appState.email = '';
           appState.phone = '';
@@ -2886,7 +3618,6 @@
           showToast('Form cleared for fresh typing.');
         });
 
-        // Quick sample button in topbar
         $('btn-quick-sample').addEventListener('click', () => {
           appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
           populateFormFields();
@@ -2899,147 +3630,192 @@
       // DRAWERS (SIDEBAR & HAMBURGER)
       const backdrop = $('drawer-backdrop');
       const sidebar = $('sidebar-drawer');
-      const menu = $('menu-drawer');
+      const hamburger = $('menu-drawer');
 
+      function openSidebar() {
+        closeAllDrawers();
+        backdrop.classList.add('active');
+        sidebar.classList.add('active');
+      }
+      function openHamburger() {
+        closeAllDrawers();
+        backdrop.classList.add('active');
+        hamburger.classList.add('active');
+      }
       function closeAllDrawers() {
-        sidebar.classList.remove('active');
-        menu.classList.remove('active');
         backdrop.classList.remove('active');
+        sidebar.classList.remove('active');
+        hamburger.classList.remove('active');
       }
 
       function initDrawers() {
-        $('btn-sidebar-toggle').addEventListener('click', () => {
-          menu.classList.remove('active');
-          sidebar.classList.toggle('active');
-          backdrop.classList.toggle('active', sidebar.classList.contains('active'));
-        });
+        $('btn-sidebar-toggle').addEventListener('click', openSidebar);
         $('btn-sidebar-close').addEventListener('click', closeAllDrawers);
-
-        $('btn-hamburger-toggle').addEventListener('click', () => {
-          sidebar.classList.remove('active');
-          menu.classList.toggle('active');
-          backdrop.classList.toggle('active', menu.classList.contains('active'));
-        });
+        $('btn-hamburger-toggle').addEventListener('click', openHamburger);
         $('btn-menu-close').addEventListener('click', closeAllDrawers);
         backdrop.addEventListener('click', closeAllDrawers);
 
-        // Sidebar link clicks close drawer
-        sidebar.querySelectorAll('a').forEach(a => {
-          a.addEventListener('click', closeAllDrawers);
-        });
-
-        // Hamburger internal tabs
-        const tabBtns = menu.querySelectorAll('.tab-btn');
-        const panels = menu.querySelectorAll('.tab-panel');
-        tabBtns.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-            tabBtns.forEach(b => b.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
-            const targetPanel = $(`tab-${targetTab}`);
-            if (targetPanel) targetPanel.classList.add('active');
+        document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            closeAllDrawers();
           });
         });
 
-        // Language setting
+        // Tabs inside Hamburger Menu
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const target = btn.dataset.tab;
+            tabBtns.forEach(b => {
+              const active = b === btn;
+              b.classList.toggle('active', active);
+              b.setAttribute('aria-selected', active);
+            });
+            tabPanels.forEach(p => {
+              p.classList.toggle('active', p.id === `tab-${target}`);
+            });
+          });
+        });
+      }
+
+      // BOOKMARK COLLAPSE & AUTO OFFSET
+      function initBookmarks() {
+        const bmBar = $('bookmarks-bar');
+        const bmBtn = $('btn-collapse-bookmarks');
+        bmBtn.addEventListener('click', () => {
+          appSettings.bookmarksCollapsed = !appSettings.bookmarksCollapsed;
+          if (appSettings.bookmarksCollapsed) {
+            bmBar.classList.add('collapsed');
+            bmBtn.textContent = '+';
+            bmBtn.setAttribute('aria-label', 'Expand bookmarks');
+          } else {
+            bmBar.classList.remove('collapsed');
+            bmBtn.textContent = '−';
+            bmBtn.setAttribute('aria-label', 'Collapse bookmarks');
+          }
+          saveSettings();
+        });
+
+        // Highlight active bookmark on scroll
+        const sections = document.querySelectorAll('.form-card');
+        const chips = document.querySelectorAll('.bookmark-chip');
+        window.addEventListener('scroll', () => {
+          let currentId = '';
+          sections.forEach(sec => {
+            const top = sec.getBoundingClientRect().top;
+            if (top <= 140) {
+              currentId = sec.id;
+            }
+          });
+          if (currentId) {
+            chips.forEach(chip => {
+              const href = chip.getAttribute('href');
+              chip.classList.toggle('active', href === `#${currentId}`);
+            });
+          }
+        }, { passive: true });
+      }
+
+      // MOBILE VIEW SWITCHER (PHONE SCREENS)
+      function initMobileTabs() {
+        const btnForm = $('btn-mobile-show-editor');
+        const btnPrev = $('btn-mobile-show-preview');
+        const editorPane = $('editor-pane');
+        const prevPane = $('preview-pane');
+
+        btnForm.addEventListener('click', () => {
+          btnForm.classList.add('active');
+          btnPrev.classList.remove('active');
+          editorPane.classList.remove('tab-hidden');
+          prevPane.classList.add('tab-hidden');
+        });
+
+        btnPrev.addEventListener('click', () => {
+          btnPrev.classList.add('active');
+          btnForm.classList.remove('active');
+          prevPane.classList.remove('tab-hidden');
+          editorPane.classList.add('tab-hidden');
+          // Trigger fit calculation
+          setTimeout(() => {
+            $('btn-zoom-reset').click();
+          }, 50);
+        });
+      }
+
+      // FULLSCREEN TOGGLE
+      function initFullscreen() {
+        const btn = $('btn-toggle-fullscreen');
+        btn.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().then(() => {
+              showToast('Entered fullscreen presentation');
+            }).catch(e => {
+              showToast('Fullscreen not supported: ' + e.message);
+            });
+          } else {
+            document.exitFullscreen().then(() => {
+              showToast('Exited fullscreen');
+            });
+          }
+        });
+      }
+
+      // AUDIO TTS PROFILE SUMMARY
+      function initAudioSpeech() {
+        $('btn-audio-summary').addEventListener('click', () => {
+          if (!('speechSynthesis' in window)) {
+            showToast('Speech synthesis not supported on this browser.');
+            return;
+          }
+          window.speechSynthesis.cancel();
+          const text = `${appState.name}. Applying for ${appState.targetTitle}. ${appState.summary}`;
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'en-AU';
+          utter.rate = 0.95;
+          utter.pitch = 1.0;
+          utter.onstart = () => showToast('Playing audio speech in Australian English...');
+          utter.onend = () => showToast('Audio read-aloud completed.');
+          window.speechSynthesis.speak(utter);
+        });
+
+        $('btn-audio-stop').addEventListener('click', () => {
+          if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            showToast('Audio speech stopped.');
+          }
+        });
+      }
+
+      // SETTINGS INTERACTION
+      function initSettingsControls() {
         $('setting-lang').addEventListener('change', e => {
           appSettings.lang = e.target.value;
           applySettings();
           saveSettings();
         });
-
-        // Theme setting
         $('setting-theme').addEventListener('change', e => {
           appSettings.theme = e.target.value;
           applySettings();
           saveSettings();
         });
-
-        // Layout setting
         $('setting-layout').addEventListener('change', e => {
           appSettings.layout = e.target.value;
           applySettings();
           saveSettings();
         });
 
-        // Reset Settings button
         $('btn-reset-settings').addEventListener('click', () => {
-          appSettings.lang = 'bilingual';
           appSettings.theme = 'eye-care';
+          appSettings.lang = 'bilingual';
           appSettings.layout = 'auto';
           applySettings();
           saveSettings();
-          showToast('Settings restored to defaults.');
-        });
-
-        // Fullscreen toggle
-        $('btn-toggle-fullscreen').addEventListener('click', () => {
-          if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(() => {
-              showToast('Fullscreen not permitted by browser.');
-            });
-          } else {
-            document.exitFullscreen().catch(() => {});
-          }
-        });
-
-        // Bookmarks Collapse
-        $('btn-collapse-bookmarks').addEventListener('click', () => {
-          appSettings.bookmarksCollapsed = !appSettings.bookmarksCollapsed;
-          applySettings();
-          saveSettings();
+          showToast('Settings reset to defaults.');
         });
       }
 
-      // MOBILE VIEW TABS (FOR NARROW PHONE VIEWPORTS)
-      function initMobileViewTabs() {
-        const btnEditor = $('btn-mobile-show-editor');
-        const btnPreview = $('btn-mobile-show-preview');
-        const editorPane = $('editor-pane');
-        const previewPane = $('preview-pane');
-
-        btnEditor.addEventListener('click', () => {
-          btnEditor.classList.add('active');
-          btnPreview.classList.remove('active');
-          editorPane.style.display = 'flex';
-          previewPane.style.display = 'none';
-        });
-
-        btnPreview.addEventListener('click', () => {
-          btnPreview.classList.add('active');
-          btnEditor.classList.remove('active');
-          editorPane.style.display = 'none';
-          previewPane.style.display = 'flex';
-        });
-      }
-
-      // AUDIO / SPEECH SYNTHESIS
-      let currentUtterance = null;
-      function initAudioSpeech() {
-        $('btn-audio-summary').addEventListener('click', () => {
-          if (!('speechSynthesis' in window)) {
-            showToast('Speech synthesis not supported by this browser.');
-            return;
-          }
-          window.speechSynthesis.cancel();
-          const textToSpeak = `${appState.name}. Targeted Australian résumé for ${appState.targetTitle}. ${appState.summary}`;
-          currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
-          currentUtterance.lang = 'en-AU'; // Australian English voice priority
-          currentUtterance.rate = 0.95;
-          window.speechSynthesis.speak(currentUtterance);
-          showToast('Reading résumé summary in English...');
-        });
-
-        $('btn-audio-stop').addEventListener('click', () => {
-          if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            showToast('Audio playback stopped.');
-          }
-        });
-      }
-
-      // INITIALIZATION
+      // INITIALIZATION ENTRY POINT
       function init() {
         loadPersisted();
         applySettings();
@@ -3048,22 +3824,24 @@
         populateFormFields();
         attachFormListeners();
         renderPreview();
-        initDrawers();
+
         initZoomControls();
-        initMobileViewTabs();
+        initPrintSystem();
+        initDrawers();
+        initBookmarks();
+        initMobileTabs();
+        initFullscreen();
         initAudioSpeech();
+        initSettingsControls();
         initJsonBackup();
         initResetModal();
 
-        // Print buttons
-        $('btn-print-pdf').addEventListener('click', triggerPrint);
-        $('btn-preview-print').addEventListener('click', triggerPrint);
-        $('btn-export-pdf-bottom').addEventListener('click', triggerPrint);
-
-        // Copy Plaintext
         $('btn-copy-plaintext').addEventListener('click', copyPlainText);
 
-        console.log('Australian Résumé Studio v1 initialized successfully.');
+        // Auto fit zoom on initial render
+        setTimeout(() => {
+          $('btn-zoom-reset').click();
+        }, 150);
       }
 
       if (document.readyState === 'loading') {
@@ -3071,6 +3849,7 @@
       } else {
         init();
       }
+
     })();
   </script>
 </body>

@@ -3,17 +3,32 @@ title: "AustralianResume澳洲履歷產生器"
 type: Knowledge結構化知識
 state: active
 date: "2026-09-25"
+version: "v2"
 ---
 
-# Australian Résumé Studio / 澳洲打工度假履歷產生器 (v1)
+# Australian Résumé Studio / 澳洲打工度假履歷產生器 (v2)
 
 ## Overview / 模組概述
 
-Australian Résumé Studio is a standalone, offline-safe, bilingual web tool designed to help working holiday makers, students, and international job seekers create high-impact, single-page A4 Australian CVs.
-澳洲打工度假履歷產生器（Australian Résumé Studio）是一個完全獨立、離線可用、雙語對照的網頁工具，專為打工度假青年、留學生及跨國求職者設計，能快速生成符合澳洲就業標準的一頁式 A4 專業履歷。
+Australian Résumé Studio is a standalone, offline-safe, bilingual web tool designed to help working holiday makers, students, and international job seekers create high-impact Australian CVs tailored to Australian workplace standards.
+澳洲打工度假履歷產生器（Australian Résumé Studio）是一個完全獨立、離線可用、雙語對照的網頁工具，專為打工度假青年、留學生及跨國求職者設計，能快速生成符合澳洲就業標準的專業履歷。
 
-The tool offers 8 distinct Australian visual styling palettes and 12 pre-configured job role profiles, providing 96 total design and content combinations.
-本工具提供 8 種道地澳洲視覺風格與 12 種熱門求職目標設定，共有 96 種版型與職務內容組合。
+Version 2 introduces dual page format modes: **Strict 1-Page A4 Mode** (gold standard for WHV & hospitality) and **Comprehensive 2-Page A4 Mode** (for corporate, skilled professionals and multi-role applicants), along with dynamic spacing density controls and browser print overflow safeguards.
+版本 v2 全新升級雙篇幅模式：**嚴格單頁 A4 模式**（打工度假餐旅黃金標準）與**完整雙頁 A4 模式**（辦公室白領、技術移民與多段經歷專用），並加入排版密度調節與瀏覽器列印防溢出機制。
+
+---
+
+## Australian Page Length Standards / 澳洲求職篇幅規範
+
+1. **Working Holiday (WHV) & Hospitality / 澳洲打工度假與餐飲服務（嚴格 1 頁）**
+   - **Industry Standard / 業界標準**: Strictly **1 Page A4** / 嚴格單頁 A4。
+   - **Rationale / 原因**: Australian venue managers and head chefs triage walk-in and online CVs in 10 to 15 seconds during off-peak afternoon lull periods. A 1-page CV is clean, rigid, does not need staples, and never gets lost or split. Accidental spillovers onto a 2nd page look amateurish.
+   - **Key Checklist / 審查重點**: Right to work / Visa Subclass (417/462) & expiry date, Immediate availability & roster flexibility (early mornings/weekends), Local suburb/commute, Essential Australian tickets (RSA WA, DoFoodSafely, White Card), and 1–2 transferable experiences.
+
+2. **Corporate & Skilled Migration / 澳洲企業白領與技術移民（標準 2 頁）**
+   - **Industry Standard / 業界標準**: Standard **2 Pages A4** / 標準雙頁 A4。
+   - **Rationale / 原因**: Australian corporate recruiters on SEEK and LinkedIn expect detailed STAR accomplishment bullets (Situation, Task, Action, Result) across multiple career phases and 2 named professional referees on Page 2.
+   - **Structure / 版面配置**: Page 1 holds Profile, Core Competencies, and Primary Experience; Page 2 holds Prior Career History, Education, Licences, and Referees. Both pages are balanced and filled.
 
 ---
 
@@ -63,11 +78,17 @@ The tool offers 8 distinct Australian visual styling palettes and 12 pre-configu
 
 ---
 
-## Core Capabilities / 核心功能
+## Core Capabilities (v2 Enhancements) / 核心功能與 v2 升級
 
-- **Universal Input Customization / 完全自訂個人內容**：Any user can enter their own name, contact information, visa details, job history, and education.
-- **Dynamic Experience Management / 動態工作經歷**：Add, edit, or remove multiple past roles with targeted achievement bullet points.
-- **Live A4 Preview / 即時 A4 畫面**：Reflects edits instantaneously with zoom controls (fit, zoom in, zoom out).
-- **Exact One-Page A4 PDF / 完美單頁 A4 PDF 匯出**：Dedicated `@media print` rules ensure zero overflow, margin alignment, and clean browser PDF generation via Print → Save as PDF.
+- **Dual Page Length Modes / 雙頁面模式切換**：
+  - `1 Page A4`: Enforces strict single-page print containment (`max-height: 297mm; overflow: hidden; page-break-after: avoid;`), eliminating trailing blank/footer pages.
+  - `2 Pages A4`: Separates content symmetrically into Page 1 (Profile, Core Skills, Primary Experience) and Page 2 (Previous Experience, Education, Tickets, Referees) with exact `@media print` page breaks.
+- **Dynamic Density Selector / 三段排版密度調整**：
+  - `Compact (緊湊)`: Tightened margins and font sizing for extensive descriptions to fit within 1 page.
+  - `Balanced (標準)`: Optimum typographic hierarchy and spacing.
+  - `Spacious (舒朗)`: Generous layout for entry-level applicants with shorter backgrounds.
+- **Professional Referees Section / 澳洲推薦人專屬欄位**：Supports 2 referees with name, company, position, phone and email, matching Australian corporate norms.
+- **Universal Customization / 完全自訂個人內容**：Any user can enter their own name, contact information, visa details, job history, and education.
+- **Print Setup Guidance / 列印設定教學引導**：Pre-print modal advises selecting "Save as PDF", "Margins: None", and unchecking "Headers and footers".
 - **Seek / Indeed Quick Copy / 快速文字複製**：Generates pre-formatted plain text ready to paste directly into online recruitment platforms.
 - **Offline First & Privacy / 離線運作與隱私保障**：All computation occurs client-side in the browser. No personal data is transmitted to external servers. Auto-saves to browser `localStorage`.
